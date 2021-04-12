@@ -631,3 +631,5 @@ If your `<code>` contains computer code, there isn't a readily available attribu
      </code>
     </pre> 
 Erika thinks this goes against what CSS is used for, unless your Python code happens to be styled differently than your JavaScript code on the page. Erika would be more likely to use a data element as in `<pre data-language="python">` because most screen readers will read out the text of a `data-` attribute. If you have insights on this, [please comment in the discussion](https://jen4web.substack.com/p/code/comments).
+
+### [`<code>` and `<pre>` demo](https://codepen.io/jen4web/pen/PoWQpKp)
