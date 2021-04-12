@@ -1,6 +1,6 @@
-#`<address>`
+# `<address>`
 
-###What does `<address>` do?
+### What does `<address>` do?
 `<address>` should be used for addresses. You guessed that already. But what kind of addresses, and in what context?
 
 Address context
@@ -25,7 +25,7 @@ The contact person's name may also be included in an address element.
 ⛔️ However, non-contact information is to be avoided.
 
 
-#`<blockquote>` and `<q>`
+# `<blockquote>` and `<q>`
 
 `<blockquote>` is for block-level quotes, while `<q>` is used for inline quotes. Optionally, these may be paired with either a <cite> element or a cite attribute. (We'll cover <cite> and cite tomorrow, Day 3.)
 
@@ -33,21 +33,21 @@ In other words, a longer quote goes in a `<blockquote>` element, while `<q>` mar
 
 👀 Sounds easy, but it's not as straightforward as you think.
 
-###When to use `<blockquote>`
+### When to use `<blockquote>`
  - ✅ You're quoting an extended passage from a book, article, website, or some other work. By making this passage stand alone, it's clear that this is something you are quoting, not something that you originally wrote.
 
 - ✅ You're quoting what someone said as a report, not as a conversation.
 
 - ✅ Somewhere, there's a citation that could go with this.
 
-###When to use `<q>`
+### When to use `<q>`
 🏁 You're quoting a short passage from a book, article, website, or another work. Typically this is a few words or a line or two. Anything longer should probably use `<blockquote>`.
 
 🏁 It's not a conversation.
 
 🏁 There's a citation that could go with it.
 
-###When not to use `<blockquote>` or `<q>`
+### When not to use `<blockquote>` or `<q>`
 - ⛔️ Dialog - if it's a conversation, it's not a quote.
 
 - ⛔️ Sarcasm or "air quotes" - there is a double quote key on your keyboard for these. It's not just for "code."
@@ -58,7 +58,7 @@ In other words, a longer quote goes in a `<blockquote>` element, while `<q>` mar
 
 - ⛔️ Did I mention that `<q>` is not for conversations?
 
-###Common attributes
+### Common attributes
 👀 `<cite>` and the cite attribute are commonly associated with these elements, for obvious reasons. Your original thoughts or writing are not included in `<blockquote>` and `<q>`. Therefore, a citation is appropriate. (We'll cover `<cite>` and cite tomorrow, Day 3.)
 
 
@@ -75,7 +75,7 @@ If it's a creative work, like the title of a book, movie, or exhibition, or the 
 
 🎓 So... not exactly an academic citation, is it? We aren't linking to Disney+, or a website, or any study that has conclusively proved this statement to be true, even though we know it is true.
 
-###Where it gets hard
+### Where it gets hard
 Let's say we want to properly quote this:
 
 - Who said it: The Client
@@ -88,13 +88,13 @@ Let's say we want to properly quote this:
 
 It's a short quote, so it could be inside of a `<q>` element as part of a sentence, or it could be set off as a more prominent quote in a `<blockquote>` element. Let's demonstrate the `<blockquote>` variation according to WHATWG and MDN.
 
-###WHATWG Example 1
+### WHATWG Example 1
     <blockquote cite="https://www.starwars.com/news/the-mandalorian-quotes">  
        <p>Bounty hunting is a complicated profession.</p> </blockquote> 
     <p>The Client in <cite>The Mandalorian</cite></p> 
 WHATWG maintains that the citation should not show up inside of the `<blockquote>`. It should be placed after it. The URL citation is placed as an attribute to `<blockquote>` to associate the URL with the quote.
 
-###WHATWG Example 2
+### WHATWG Example 2
     <figure>
        <blockquote cite="https://www.starwars.com/news/the-mandalorian-quotes">
          <p>Bounty hunting is a complicated profession.</p>
@@ -105,14 +105,14 @@ This methodology associates the quote with who said it from where more strongly.
 
 By the way, if you feel like both of these examples make no sense, we sympathize. We are reporting their rules, not our agreement with them.
 
-###MDN Example
+### MDN Example
     <blockquote>
        <p>Bounty hunting is a complicated profession.</p>
        <footer>The Client in <cite><a href="https://www.starwars.com/news/the-mandalorian-quotes">The Mandalorian</a></cite></footer> 
     </blockquote> 
 This might be closer to what you've seen others do before. Here the character who said it and the creative work are referenced inside the `<blockquote>`. The URL is in a clickable link, although it could be referenced via the cite attribute if a clickable link was not desired for some reason.
 
-###Common attributes
+### Common attributes
 Cite may also be an attribute within:
 
 `<blockquote>` and `<q>` (discussed in Day 2)
@@ -147,7 +147,7 @@ One common -- and useful -- combination is to pair `<dfn>` with `<abbr>` (the ab
 
     <p><dfn><abbr title="Massive Unidentified Terrestrial Organism">MUTO</abbr></dfn> refers to a species of giant monsters that first appeared in <cite>Godzilla</cite> (2014) and <cite>Godzilla: King of the Monsters</cite> (2019). In <cite>Godzilla vs. Kong</cite> (2021), the enemy has changed.</p> 
 
-###Little known facts about `<dfn>`
+### Little known facts about `<dfn>`
 Both MDN and WHATWG say that if `<dfn>` has a title attribute, the attribute MUST contain only the term and no other text. Our thought is that this could be for a nickname, rather than an abbreviation, otherwise, it's unclear in the documentation what the difference is!
 
     <p>In the Godzilla-verse, <dfn title="Ghidorah">Monster Zero</dfn> is a giant extraterrestrial three-headed dragon-like monster.</p> 
@@ -159,7 +159,7 @@ If you are using a `<dl>` (Day 5, tomorrow!) as a DEFINITION list, then it's acc
        <dt><dfn>Skull Island</dfn></dt>
        <dd>Island where Kong lives</dd>
     </dl>
-###Common attributes
+### Common attributes
 Common attributes include *title* and *id*, as explained earlier.
 
 # Description lists and `<dl>`, `<dt>`, `<dd>`
@@ -207,7 +207,7 @@ The classic use as a definition list consisting of terms and definitions still w
        <dt><dfn>Fresh Thyme</dfn></dt>
        <dd>A Midwestern grocery store chain in the United States</dd> 
     </dl> 
-###Duplicating terms and descriptions
+### Duplicating terms and descriptions
 As shown above, you may have more than one `<dt>` for a `<dd>`, and you may have more than one `<dd>` for a `<dt>`.
 
 If you have multiple `<dt>` elements in a row, it's assumed these are all names for the same thing.
@@ -215,7 +215,7 @@ If you have multiple `<dt>` elements in a row, it's assumed these are all names 
 If you have multiple `<dd>` elements in a row, it's assumed these are all possible descriptions for the term(s) immediately preceding the description.
 
 
-###Little known fact about description lists
+### Little known fact about description lists
 WHATWG is permitting `<div>` elements inside of `<dl>` now for two purposes: styling and for holding microdata elements. 
 
     <h3>Grandma's Apple Pie</h3>
@@ -242,7 +242,7 @@ WHATWG is permitting `<div>` elements inside of `<dl>` now for two purposes: sty
 
 True, animation effects to smooth out the transition are not available, but in a pinch, we think you'll find you love this tag as much as we do! 💕
 
-###Example
+### Example
 The details/summary combination is perfect for information similar to a definition list, but which might have a series of items that stand alone, rather than grouped in list format:
 
     <details>
@@ -258,7 +258,7 @@ The `<summary>` element is optional. Without it, you'll get the default clickabl
 
 - ✅ The `<summary>` element is used nowhere else in HTML. It may only be used with `<details>` and only as a first-child of `<details>`. How's that for a specific element?
 
-###Common attributes
+### Common attributes
 By including the open attribute in the `<details>` element, the element will appear open by default on the page, rather than closed:
 
     <details open>
@@ -303,18 +303,18 @@ However, if you're working with an abbreviation or acronym that is well-known, a
     <p>We are excited to see where <abbr title="National Aeronautics and Space Administration">NASA</abbr> takes us next, given their many successes on the Moon and Mars.</p>  
 ***Many of Jen’s current and former students now hear her voice in their heads: “Just because you can doesn’t mean you should…”*
 
-##Common misconceptions
+## Common misconceptions
 
-###Deprecated `<acronym>` element
+### Deprecated `<acronym>` element
 ⛔️ Older HTML specifications included a separate <acronym> element, which is now deprecated. While there is a difference between acronyms and abbreviations, developers aren't that picky about the *semantic* difference.
 
-###Differences in display across browsers
+### Differences in display across browsers
 ⛔️ Some of these older browsers (IE in particular) don't style `<abbr>` the same way that our favorite browsers do (a dotted underline plus tooltip). As always, check across browsers for consistency in styling.
 
-###Don't go crazy with `<abbr>`
+### Don't go crazy with `<abbr>`
 ✅ Even the specifications state that not every instance of an abbreviation or acronym requires an `<abbr>` tag. Consider that Dr. is an abbreviation for "doctor" - would you seriously mark that up every time it occurs in medical documentation? We think not. Apply `<abbr>` judiciously. Don't go bananas.
 
-###Commonly used attributes
+### Commonly used attributes
 We described the title attribute in detail earlier:
 
     <abbr title="National Aeronautics and Space Administration">NASA</abbr>
@@ -344,14 +344,14 @@ Back in the Dark Days Before CSS, `<small>` was used for... small text! As in, t
 ✅ `<small>` may also be used to indicate limitations on an offer.
 
     <p>Today only: $10 off your purchase! <small>must purchase $1000 or more</small></p> 
-###Common misconceptions about `<small>`
+### Common misconceptions about `<small>`
 ⛔️ WHATWG cautions against using `<small>` as the "opposite" of strongly emphasized (`<strong>`) or emphasized (`<em>`) text:
 
 The small element does not "de-emphasize" or lower the importance of text emphasized by the em element or marked as important with the strong element. To mark text as not emphasized or important, simply do not mark it up with the em or strong elements respectively.
 
 👀⚠️ Finally, always ask yourself if you're using `<small>` for styling or if you're using it to convey specific meaning. If it's styling, use CSS. 👀 ⚠️
 
-###[A `<small>` demo](https://codepen.io/jen4web/pen/OJWjomB)
+### [A `<small>` demo](https://codepen.io/jen4web/pen/OJWjomB)
 
 # `<wbr>` and &shy
 
@@ -361,7 +361,7 @@ As developers, we tend to ignore some of the nice styles that print designers ha
 
 But the designers among us will be super happy to know that we have some control over the rag using `<wbr>`, the word break tag, and `&shy;`, the "shy" hyphen.
 
-###What does `<wbr>` do?
+### What does `<wbr>` do?
 Long words don't automatically hyphenate on the web. What's more, for developers trying to make text look good on the range of screen sizes we support, inevitably marketing and/or the designers will find that ONE ANNOYING SCREEN where it looks bad and harp on it endlessly. Not that we have ever personally experienced this.
 
     <p>Somewhere out there, on some screen, this sentence will look awful because of <dfn>sesquipedalianism</dfn>, a love of long words.</p> 
@@ -378,7 +378,7 @@ We suppose you could do some JavaScript magic to address this problem. But you k
 
 For example, have you ever styled a long URL on a page? (University peeps: citations, amirite?) `<wbr>` handles this well without adding extra characters. See the [CSS Tricks article](https://css-tricks.com/better-line-breaks-for-long-urls/) that will walk you through this.
 
-###What does `&shy;` do?
+### What does `&shy;` do?
 ✅ You guessed it already! A "shy" hyphen is a hyphen that appears only when needed.
 
     <p>Somewhere out there, on some screen, this sentence will look awful because of <dfn>ses&shy;qui&shy;pe&shy;dal&shy;ian&shy;ism</dfn>, a love of long words.</p> 
@@ -402,4 +402,4 @@ What's more, if browsers don't support these CSS properties, you are no worse of
 
 And others!
 
-###[`<wbr>` and `&shy;` demo](https://codepen.io/jen4web/pen/bGgYERj)
+### [`<wbr>` and `&shy;` demo](https://codepen.io/jen4web/pen/bGgYERj)
