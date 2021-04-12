@@ -34,7 +34,7 @@ In other words, a longer quote goes in a `<blockquote>` element, while `<q>` mar
 👀 Sounds easy, but it's not as straightforward as you think.
 
 ### When to use `<blockquote>`
- - ✅ You're quoting an extended passage from a book, article, website, or some other work. By making this passage stand alone, it's clear that this is something you are quoting, not something that you originally wrote.
+- ✅ You're quoting an extended passage from a book, article, website, or some other work. By making this passage stand alone, it's clear that this is something you are quoting, not something that you originally wrote.
 
 - ✅ You're quoting what someone said as a report, not as a conversation.
 
@@ -216,7 +216,7 @@ If you have multiple `<dd>` elements in a row, it's assumed these are all possib
 
 
 ### Little known fact about description lists
-WHATWG is permitting `<div>` elements inside of `<dl>` now for two purposes: styling and for holding microdata elements. 
+WHATWG is permitting `<div>` elements inside of `<dl>` now for two purposes: styling and for holding microdata elements.
 
     <h3>Grandma's Apple Pie</h3>
      <dl>
@@ -252,7 +252,7 @@ The details/summary combination is perfect for information similar to a definiti
 The `<summary>` element is optional. Without it, you'll get the default clickable text which says "details." The `<summary>` element must also be the first child of `<details>`. Include it as the very first thing inside the `<details>` element.
 
 ### Little known facts about `<details>` and `<summary>`
- - ⛔️ The details element is not appropriate for footnotes. Seems like it would be a great fit, but unfortunately, it's not. See WHATWG for more information.
+- ⛔️ The details element is not appropriate for footnotes. Seems like it would be a great fit, but unfortunately, it's not. See WHATWG for more information.
 
 - ⛔️ There is currently no way to control the animation between the summary being hidden and revealed.
 
@@ -403,3 +403,231 @@ What's more, if browsers don't support these CSS properties, you are no worse of
 And others!
 
 ### [`<wbr>` and `&shy;` demo](https://codepen.io/jen4web/pen/bGgYERj)
+
+# `<sup>` and `<sub>`
+
+If you're a fan of footnotes, certain abbreviations, exponents, or chemical formulas, you're familiar with superscripts and subscripts. Superscripts are the ones that go up, and subscripts go down. Shockingly, these characters may be marked up in HTML using the `<sup>` and `<sub>` elements.
+
+⚠ 👀 As always, these HTML elements should not be used for CSS styling purposes. They are intended to communicate meaning. E=mc2 means that we’re multiplying mass x the speed of light x 2, while E=mc`<sup>`2`</sup>` means the speed of light is squared (and then multiplied by mass). Important difference.
+
+
+### Superscripts with `<sup>`
+Superscripts are the ones that go up. You'll find them used as exponents and some kinds of lettering, among other cases.
+
+    <p>Which way to 4<sup>th</sup> Street?</p>  
+    
+    <p>The Pythagorean Theorem says that a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>.</p> 
+
+### Subscripts with `<sub>`
+
+Let's say we want to write some markup for Jen's favorite Valentine poem ever. 
+*(Did you know she was a biology major/chemistry minor in college? Science is her love language.)*
+
+The markup for this poem would look like this:
+
+    <p>Roses are angiosperms<br>
+     Violets are too<br>
+     Sugar is C<sub>12</sub>H<sub>22</sub>O<sub>11</sub><br>
+     We know this from peer review</p> 
+
+### Bonus: MathML
+✅ You might be wondering about the boundaries between these simple HTML superscripts and subscripts and full-fledged scientific and mathematical formulas. If you're writing complex equations, you might want to look into [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML), the math markup language. It's made for long division, fractions, and of course, superscripts and subscripts, among many other elements.
+
+### A misconception on MDN
+⛔️ MDN combines footnotes with subscripts. We have not seen this formatting often in the wild. Wikipedia likes superscripts for footnotes, as do most manuals of style.
+
+### [`<sup>` and `<sub>` demo](https://codepen.io/erika4web/pen/zYNpogP?editors=1100)
+
+# `<s>`, `<mark>`, `<ins>`, and `<del>`
+
+Four elements in one day! It's a lot for one email, but there are several themes that tie these elements together.
+
+〽️ `<mark>` draws attention to specific text. Its default styling is a yellow highlight.
+
+🪧 `<s>` is for strikethrough. This is designed for information which has changed, but you still want to see what was there previously. It includes a line through the text by default.
+
+✔️ `<ins>` is specifically for editing, adding text to the document. It's underlined by default. Ugh.
+
+❌ `<del>` is specifically for editing also, indicating that text was removed from the document. It also has a line through it by default.
+
+Why combine these in a single day? `<s>` and `<del>` are very similar in their purpose and need further explanation. `<ins>` and `<del>` are for editing specifically. `<mark>` might be the easiest to explain, but it has similar accessibility issues to the other elements, so it makes sense to present this at the same time.
+
+### `<mark>`: Draw attention
+
+Sometimes you need to draw attention to certain text. That text is relevant, but perhaps not important enough to justify `<strong>` or `<em>`.
+
+    <p><strong>Warning</strong>: Drinking too much coffee may lead to <mark>sleepless nights</mark>.</p> 
+You may also use `<mark>` in a quotation (`<blockquote>` or `<q>`) to bring attention to certain parts of a passage that might not have been emphasized in the original text.
+
+    <blockquote cite="https://www.amazon.com/gp/product/1568302894/">
+       <p><cite>Creating Killer Web Sites</cite> is the first true design book for the Web. ...you'll find this book invaluable for all aspects of design: ... <mark>why you should avoid using most standard HTML tags</mark>... </p>
+       <footer>Description of <cite>Creating Killer Websites</cite> by David Siegal (1996)</footer> </blockquote> 
+`<mark>` may also be used to identify search terms in a page of search results.
+
+Other use cases are listed at [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark) and [WHATWG](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-mark-element).
+
+### `<s>`: Indicating information has changed
+Sometimes things change. Prices increase or decrease. Tickets and featured restaurant entrees get sold out. We make silly comments and think better of them, but still want to leave the silly comment. `<s>`, the strikethrough element, is appropriate for all of these.
+
+    <p>Purchase a ticket for <s>$100</s> <s>$50</s> $10!</p> 
+In other words, **this isn't for editing**. We want you to be aware that things have changed, and that's part of the story we're telling.
+
+### `<ins>` and `<del>`: Editing with HTML
+The concept of tracking changes is found in document editors, databases, websites, and GitHub. Why not HTML? Sure, why not!
+
+That's what `<ins>` (insertion) and `<del>` (delete) are for. These indicate permanent changes to the document. Or at least, permanent enough for now.
+
+    <p>John's current employer is <del>Google</del> <del>Microsoft</del> <ins>Yahoo</ins>.</p> 
+
+⛔️ By default, browsers draw a line through deleted text (just like `<s>`) and 😠 underline 😠 the inserted text. Yuck. As a result, many developers use CSS to change these default stylings to a GitHub-like pale red `<del>` and pale green `<ins>`, paired with a symbol to indicate addition and subtraction of content. See [MDN's CSS pane](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ins) for an example of this (with added + and - symbols for accessibility).
+
+### Want even better examples of these?
+✅ ✅ ✅ We strongly recommend John Rhea's article at CSS Tricks, [Copyediting with Semantic HTML](https://css-tricks.com/copyediting-with-semantic-html/). Bravo!
+
+### Why we grouped these four elements: Accessibility considerations
+Even though these four elements communicate semantics, they are not necessarily recognized and read by screen readers. For example, someone using a screen reader would hear all of those prices read out loud:
+
+    <p>Purchase a ticket for <s>$100</s> <s>$50</s> $10!</p> 
+becomes, `“Purchase a ticket for $100 $50 $10!”`
+
+Indeed, in the MDN documentation for each element, there's a section with a similar CSS-based solution for this issue. (They vary only in the value of the content property.) For example, [here is the suggestion for `<s>` from MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/s#accessibility_concerns):
+
+    s::before, s::after {
+    clip-path: inset(100%);
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+    }
+    s::before {
+    content: " [start of stricken text] ";
+    }
+    s::after {
+    content: " [end of stricken text] ";
+    }
+The first declaration visually hides the text generated by the second and third declarations, which is intended to be aural content for screen readers.
+
+✅ ✅ ✅ We strongly recommend [Adrian Rosseli's Tweaking Text-Level Styles](https://adrianroselli.com/2017/12/tweaking-text-level-styles.html) for more detailed information about how this works.
+
+### Commonly used attributes for `<ins>` and `<del>`
+It's lovely that we know information was inserted or deleted. But when? And why? That is what the datetime and cite attributes are for.
+
+As you might guess, *datetime* is for... time and date? But not in just any format. [Use the standardized time and date formats for HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Date_and_time_formats#date_strings). This format needs an email/blog post by itself, and we'll talk about it further when we get to <time> in a few days.
+
+We know the cite attribute is for URLs when used with `<blockquote>` or `<q>` (Day 3), but what about `<ins>` and `<del>`? Fortunately, it's the same. Specify a URL where you might track bugs or other changes where someone might get a more detailed explanation about the change.
+
+    <p>John's current employer is 
+    <del datetime="2015-06-01" cite="https://www.example.com/resume.html">Google</del>  
+    <del cite="https://www.example.com/resume.html"  datetime="2017-01-08">Microsoft</del>  
+    <ins cite="https://www.example.com/resume.html"  datetime="2020-03-06">Yahoo</ins>.</p> 
+Once again, because *cite* and *datetime* are attributes, neither is displayed on the website by default, either overtly or as a tooltip. You might use CSS or JavaScript to expose these if desired. Also, even though our example uses both attributes together, you may use them individually.
+
+### [`<mark>`, `<s>`, `<ins>` and `<del>` demo](https://codepen.io/jen4web/pen/KKaQdgM?editors=1010)
+
+# `<code>` and `<pre>`
+
+If you want your code to star on the page instead of behind the scenes, then hitch your wagon to the `<code>` and `<pre>` tags.
+
+By default, your browser will ignore any white space between tags, and condense any white space in text into a single space. This is useful for code, poetry, and code poetry.
+
+    <p>   
+    An amoeba named Max and his brother
+         Were sharing a drink with each other;
+    In the midst of their quaffing,
+         They split themselves laughing,
+    And each of them now is a mother. 
+    </p> 
+Even if we were to add <br> tags at the end of each line, [an appropriate use of the break tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br), the zig-zaggy tabbing effect would be gone.
+
+### `<pre>` for pre-formatted text
+If we want to preserve white space, then wrapping our content in `<pre>` keeps the formatting -- that includes blank lines, tabs and more than one space in a line.
+
+`<pre>` is useful for displaying:
+
+💻 computer code where the spacing is important
+
+📧 written communication with specific white space formatting, like an email, poem or letter
+
+🎨 all of your totally rad ASCII art
+
+    <pre>
+              .,-;-;-,. /'_\
+            _/_/_/_|_\_\) /
+          '-<_><_><_><_>=/\
+     jgs    `/_/====/_/-'\_\
+             ""     ""    "" 
+    </pre> 
+
+### Accessibility and images
+You know about the importance of alt attributes with images. This provides a text-based description of the image. So what happens when we have ASCII art in a `<pre>` element? Well, we still need a text equivalent. MDN suggests using the `<figure>` element for this. (We'll discuss `<figure>` in the Multimedia Extravaganza unit towards the end of the month.)
+
+    <figure role="img" aria-labelledby="turtle-caption">
+    <pre>
+              .,-;-;-,. /'_\
+            _/_/_/_|_\_\) /
+          '-<_><_><_><_>=/\
+     jgs    `/_/====/_/-'\_\
+             ""     ""    "" 
+    </pre>  
+    <figcaption id="turtle-caption">
+           The raddest baddest turtle ever seen in ASCII art.
+    </figcaption> 
+    </figure> 
+
+### `<code>` for inline code
+The more semantic `<code>` element can be used in two ways. First, use it inline within other lines of text:
+
+    <p><code>turtle</code> is a Python library that enables users to command a turtle to draw pictures on a virtual canvas. We can use functions like <code>turtle.forward()</code> and <code>turtle.right</code> which can move the turtle around.</p> 
+If you have multiple lines of code to display, `<code>` may be nested in `<pre>`:
+
+    <pre>
+     <code>
+     # Python Turtle program to draw star
+     import turtle
+     star = turtle.Turtle()
+     for i in range(50):
+         star.forward(50)
+         star.right(144)
+     turtle.done() 
+     </code>
+    </pre> 
+By default, both of these tags are rendered in your browser in a monospace font, meaning each character takes up the same width on the screen. This is how code is usually displayed, so you can just leave it as is, or adjust using CSS, depending on your content.
+
+### We’re running a little long
+👀 If your `<pre>` content lines are long, you might run into an issue with the content being cut off in narrow views. [Example 4 in the CodePen demo](https://codepen.io/jen4web/pen/PoWQpKp) models these options.
+
+### Option 1: Do nothing
+The content will get cut off if the window is too narrow.
+
+### Option 2: Wrap the content
+CSS-Tricks points out that we could add:
+
+    pre { white-space: pre-wrap; }
+Pre-wrap will wrap the content and helpfully preserves pre-formatted whitespace.
+
+### Option 3: Add a scrollbar
+Or alternatively, allow content to be accessed by a horizontal scrollbar:
+
+    pre { overflow-x: auto; }
+For more helpful tips for formatting wide content, including an easy way to add color formatting to your code snippets using a lightweight JS library called [Prism](https://prismjs.com/), see CSS-Trick's [Considerations for Styling the pre Tag](https://css-tricks.com/considerations-styling-pre-tag/).
+
+### An interesting attribute
+If your `<code>` contains computer code, there isn't a readily available attribute to indicate the coding language. The main recommendation, encouraged by WHATWG, but not mentioned by MDN, is to use a class with a prefix of "language-".
+    
+    <pre>
+     <code class="language-python">
+     # Python Turtle program to draw a Rainbow Benzene
+     import turtle
+     colors = ['red', 'purple', 'blue', 'green', 'orange', 'yellow']
+     t = turtle.Pen()
+     turtle.bgcolor('black')
+     for x in range(360):
+         t.pencolor(colors[x%6])
+         t.width(x/100 + 1)
+         t.forward(x)
+         t.left(59) 
+     </code>
+    </pre> 
+Erika thinks this goes against what CSS is used for, unless your Python code happens to be styled differently than your JavaScript code on the page. Erika would be more likely to use a data element as in `<pre data-language="python">` because most screen readers will read out the text of a `data-` attribute. If you have insights on this, [please comment in the discussion](https://jen4web.substack.com/p/code/comments).
