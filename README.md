@@ -233,3 +233,173 @@ WHATWG is permitting `<div>` elements inside of `<dl>` now for two purposes: sty
          <dd>350 degrees</dd>
        </div>
      </dl>
+
+# `<details>` and `<summary>`
+
+`<details>` is a wrapper for a `<summary>` sentence or term and its longer explanation that begins collapsed. By clicking on a triangle next to the summary, we reveal a longer explanation.
+
+🪗 It's the EASIEST WAY TO MAKE AN ACCORDION MENU! 🪗
+
+True, animation effects to smooth out the transition are not available, but in a pinch, we think you'll find you love this tag as much as we do! 💕
+
+###Example
+The details/summary combination is perfect for information similar to a definition list, but which might have a series of items that stand alone, rather than grouped in list format:
+
+    <details>
+       <summary>Reading the fine print</summary>
+       <p>This is where we hide all of the secret terms and conditions. Your mileage may vary.</p> 
+    </details> 
+The `<summary>` element is optional. Without it, you'll get the default clickable text which says "details." The `<summary>` element must also be the first child of `<details>`. Include it as the very first thing inside the `<details>` element.
+
+### Little known facts about `<details>` and `<summary>`
+ - ⛔️ The details element is not appropriate for footnotes. Seems like it would be a great fit, but unfortunately, it's not. See WHATWG for more information.
+
+- ⛔️ There is currently no way to control the animation between the summary being hidden and revealed.
+
+- ✅ The `<summary>` element is used nowhere else in HTML. It may only be used with `<details>` and only as a first-child of `<details>`. How's that for a specific element?
+
+###Common attributes
+By including the open attribute in the `<details>` element, the element will appear open by default on the page, rather than closed:
+
+    <details open>
+       <summary>About My Life</summary>
+       <p>My life is as open as this details panel.</p> </details> 
+When a summary is opened, an open attribute is added to details. This attribute may be used to style each state. [The below example is from WHATWG](https://html.spec.whatwg.org/multipage/interactive-elements.html#the-details-element):
+
+    details > summary {
+    transition: color 1s;
+    color: black;  
+    }
+    details[open] > summary {
+    color: red;  
+    }
+
+# `<abbr>`
+
+**TLA: three-letter acronym.*
+
+`<abbr>` is for abbreviations or acronyms. If you're using them in your writing, well, you should define them. Your teacher told you this in school, and we're telling you again for your HTML.
+
+### How `<abbr>` works
+A good web starts with well-written content. Erika and Jen speak English in the United States, and this is our bias in the below advice. Modify the below advice to fit with grammar rules and conventions for your language and country.
+
+✅ If you learned to write papers in the US, you know that the first time you use an acronym or abbreviation, you should define it, unless it's extremely well known.
+
+    <p>We are excited to see where NASA takes us next, given their many successes on the Moon and Mars.</p> 
+To a US-based audience, we are so familiar with NASA, we may not know exactly what NASA stands for (or care, to be honest). However, it is an acronym, and we can mark it up as such:
+
+    <p>We are excited to see where <abbr>NASA</abbr> takes us next, given their many successes on the Moon and Mars.</p> 
+Yeah, not super helpful. We already guessed it was an abbreviation or acronym of some kind, but we still don't know what it stands for.
+
+✅ If you want to communicate the words behind the NASA acronym, there are two possibilities. We like this methodology, which combines good English writing practices with HTML:
+
+    <p>We are excited to see where the <dfn id="NASA">National Aeronautics and Space Administration</dfn> (<abbr title="National Aeronautics and Space Administration">NASA</abbr>) takes us next, given their many successes on the Moon and Mars.</p> 
+See how we combine `<dfn>`, which defines the abbreviation, with `<abbr>`? The ID in `<dfn>` may be used to link to that definition later in the document. (See Day 4 for details.)
+
+The title attribute in `<abbr>` also tells us what the NASA acronym means, but the meaning is hidden. You may have seen this show up as a dotted line in some browsers, with a tooltip that appears when one hovers over the link. That's nice, but now one must do some work to see what the abbreviation means, rather than reading it in the sentence. Also, what happens if you're on a device that doesn't hover? That situation is nicely addressed above through content and markup.
+
+However, if you're working with an abbreviation or acronym that is well-known, and not many people might need help with knowing what this is, you may leave the definition in the title attribute for the `<abbr>` element.**
+
+    <p>We are excited to see where <abbr title="National Aeronautics and Space Administration">NASA</abbr> takes us next, given their many successes on the Moon and Mars.</p>  
+***Many of Jen’s current and former students now hear her voice in their heads: “Just because you can doesn’t mean you should…”*
+
+##Common misconceptions
+
+###Deprecated `<acronym>` element
+⛔️ Older HTML specifications included a separate <acronym> element, which is now deprecated. While there is a difference between acronyms and abbreviations, developers aren't that picky about the *semantic* difference.
+
+###Differences in display across browsers
+⛔️ Some of these older browsers (IE in particular) don't style `<abbr>` the same way that our favorite browsers do (a dotted underline plus tooltip). As always, check across browsers for consistency in styling.
+
+###Don't go crazy with `<abbr>`
+✅ Even the specifications state that not every instance of an abbreviation or acronym requires an `<abbr>` tag. Consider that Dr. is an abbreviation for "doctor" - would you seriously mark that up every time it occurs in medical documentation? We think not. Apply `<abbr>` judiciously. Don't go bananas.
+
+###Commonly used attributes
+We described the title attribute in detail earlier:
+
+    <abbr title="National Aeronautics and Space Administration">NASA</abbr>
+The title attribute, when associated with the `<abbr>` element, must contain the definition of the acronym or abbreviation and nothing else.
+
+### [`<abbr>` demo](https://codepen.io/jen4web/pen/XWpaqmm?editors=1100)
+
+# `<small>`
+
+Read the Fine Print. It's become an art form in American society. Legal disclaimers, copyright notices, terms and conditions, privacy notifications, and so much more. It's all of those sticky details that must be disclosed, but companies like to keep hidden.
+
+Those disclaimers and details are printed in tiny type to minimize printing costs and discourage detailed reading. We can do the same on the web!
+
+### A brief history of `<small>`
+Back in the Dark Days Before CSS, `<small>` was used for... small text! As in, text that's not big. That was for the `<big>` element, of course.
+
+⛔️ Then we got wise, separated presentation from markup, and `<small>` was tossed in the great 😠 *Dustbin of Frowned-Upon Elements* 😠 for several years during HTML4 and XHTML 1.0.
+
+✅ HTML5 brought back `<small>` with its new meaning, while it deprecated `<big>`. In the new definition, `<small>` is the fine print. As [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/small) says, copyright, legal text, and side-comments are all candidates for `<small>`.
+
+### When to use `<small>`
+✅ If it's a brief passage of "fine print," as an exception to the rest of the page's content, `<small>` is a great choice.
+
+    <p><small>&copy; 2021 by me. All rights reserved, baby.</small></p> 
+⛔️ If it's an extended passage of fine print, like the pages containing the full privacy policy, terms and conditions, or other disclaimers of use, don't repeat `<small>` over and over again. On those pages, the fine print is the focus of the page, not the exception to it.
+
+✅ `<small>` may also be used to indicate limitations on an offer.
+
+    <p>Today only: $10 off your purchase! <small>must purchase $1000 or more</small></p> 
+###Common misconceptions about `<small>`
+⛔️ WHATWG cautions against using `<small>` as the "opposite" of strongly emphasized (`<strong>`) or emphasized (`<em>`) text:
+
+The small element does not "de-emphasize" or lower the importance of text emphasized by the em element or marked as important with the strong element. To mark text as not emphasized or important, simply do not mark it up with the em or strong elements respectively.
+
+👀⚠️ Finally, always ask yourself if you're using `<small>` for styling or if you're using it to convey specific meaning. If it's styling, use CSS. 👀 ⚠️
+
+###[A `<small>` demo](https://codepen.io/jen4web/pen/OJWjomB)
+
+# `<wbr>` and &shy
+
+As developers, we tend to ignore some of the nice styles that print designers have tweaked in their work for years. For example, we don’t often modify kerning, leading, widow/orphan control, or hyphenation in our sites. Nor do we tend to think much about a paragraph of information that wraps onto multiple lines. Where exactly are the line breaks occurring? How do we make the rag look even?
+
+*[8 Simple Typography Tips For Your Designs from Smashing Magazine](https://www.smashingmagazine.com/2009/04/8-simple-ways-to-improve-typography-in-your-designs/)*
+
+But the designers among us will be super happy to know that we have some control over the rag using `<wbr>`, the word break tag, and `&shy;`, the "shy" hyphen.
+
+###What does `<wbr>` do?
+Long words don't automatically hyphenate on the web. What's more, for developers trying to make text look good on the range of screen sizes we support, inevitably marketing and/or the designers will find that ONE ANNOYING SCREEN where it looks bad and harp on it endlessly. Not that we have ever personally experienced this.
+
+    <p>Somewhere out there, on some screen, this sentence will look awful because of <dfn>sesquipedalianism</dfn>, a love of long words.</p> 
+We suppose you could do some JavaScript magic to address this problem. But you know what's coming next. The content writers complain that the hyphens are in the wr-on-g spot.
+
+<wbr> performs an essential public service in indicating where word breaks might occur as set by a human.
+
+    <p>Somewhere out there, on some screen, this sentence will look awful because of <dfn>ses<wbr>qui<wbr>pe<wbr>dal<wbr>ian<wbr>ism</dfn>, a love of long words.</p> 
+*(We may have over-<wbr>-ed in this example.)*
+
+✅ This breaks up sesquipedalianism in the right spots, and the breaks appear only if needed. See the [CodePen demo](https://codepen.io/jen4web/pen/bGgYERj) for <wbr> in action.
+
+⛔️ The next problem is "BUT WAIT THERE IS NO HYPHEN." Correct. `<wbr>` does not provide you with a hyphen. This may be helpful for those occasions where a break is needed but a hyphen is not desired.
+
+For example, have you ever styled a long URL on a page? (University peeps: citations, amirite?) `<wbr>` handles this well without adding extra characters. See the [CSS Tricks article](https://css-tricks.com/better-line-breaks-for-long-urls/) that will walk you through this.
+
+###What does `&shy;` do?
+✅ You guessed it already! A "shy" hyphen is a hyphen that appears only when needed.
+
+    <p>Somewhere out there, on some screen, this sentence will look awful because of <dfn>ses&shy;qui&shy;pe&shy;dal&shy;ian&shy;ism</dfn>, a love of long words.</p> 
+
+### CSS-based typography properties
+HTML is for markup, so there's not much else we can do with `<wbr>` and `&shy;` in #30DaysofHTML.
+
+However, there are many well-supported CSS properties that also control other aspects of typography. It's more than Google Fonts.
+
+What's more, if browsers don't support these CSS properties, you are no worse off than you would be if you didn't include them. That's progressive enhancement at its finest!
+
+- Widow/orphan control (Firefox doesn't support widows and orphans. Ponder that for a minute, you monsters.)
+
+- CSS hyphenation (works great for English, not so great in other languages)
+
+- CSS columns to shorten line lengths for improved reading
+
+- CSS word breaks to prevent words from overflowing their container
+
+- [Type scales](https://type-scale.com/) for well-proportioned type
+
+And others!
+
+###[`<wbr>` and `&shy;` demo](https://codepen.io/jen4web/pen/bGgYERj)
