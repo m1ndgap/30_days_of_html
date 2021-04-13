@@ -633,3 +633,19 @@ If your `<code>` contains computer code, there isn't a readily available attribu
 Erika thinks this goes against what CSS is used for, unless your Python code happens to be styled differently than your JavaScript code on the page. Erika would be more likely to use a data element as in `<pre data-language="python">` because most screen readers will read out the text of a `data-` attribute. If you have insights on this, [please comment in the discussion](https://jen4web.substack.com/p/code/comments).
 
 ### [`<code>` and `<pre>` demo](https://codepen.io/jen4web/pen/PoWQpKp)
+
+# `<kbd>` and `<samp>`
+
+Yesterday we talked about displaying your code and other pre-formatted text on the website using `<code>` and `<pre>`. Today, we're all about the documentation - what happens when someone runs your code? What do they press on the keyboard or say via voice interface, and what is the output?
+
+### `<kbd>`: Program Input
+
+If there are keys to be pressed on the keyboard, or commands to be said by voice, they should be marked up. There's a few ways of doing this, though.
+
+### Keys marked up individually
+    <p>Windows users will use the keyboard shortcuts using <kbd>Ctrl</kbd>,  
+    while Mac users will use  <kbd>Command</kbd> instead.</p> 
+Pretty straightforward. You can also use this same markup if the keys are to be pressed together:
+
+    <p>On Windows, press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy.</p> 
+However, if you check [today’s CodePen demo](https://codepen.io/jen4web/pen/MWJQmZK), you’ll see that the + may look a bit different than the Ctrl and C above. That’s because via browser default styling, <kbd> uses a monospace font. It’s likely the rest of that paragraph does not, so you’ll see differences in size and styling.
