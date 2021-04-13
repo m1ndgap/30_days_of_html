@@ -648,4 +648,38 @@ If there are keys to be pressed on the keyboard, or commands to be said by voice
 Pretty straightforward. You can also use this same markup if the keys are to be pressed together:
 
     <p>On Windows, press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy.</p> 
-However, if you check [today’s CodePen demo](https://codepen.io/jen4web/pen/MWJQmZK), you’ll see that the + may look a bit different than the Ctrl and C above. That’s because via browser default styling, <kbd> uses a monospace font. It’s likely the rest of that paragraph does not, so you’ll see differences in size and styling.
+However, if you check [today’s CodePen demo](https://codepen.io/jen4web/pen/MWJQmZK), you’ll see that the + may look a bit different than the Ctrl and C above. That’s because via browser default styling, `<kbd>` uses a monospace font. It’s likely the rest of that paragraph does not, so you’ll see differences in size and styling.
+
+### Grouping keys
+You may also group keys together in a unit. This fixes that styling problem mentioned above, and it may better communicate that the keys are pressed as a unit.
+
+    <p>On Windows, press <kbd><kbd>Ctrl</kbd> + <kbd>C</kbd></kbd> to copy.</p> 
+
+### Voice commands
+They're more and more common these days. If you have a voice command, you can mark that up with `<kbd>` too, since that is your interface with the device.
+
+    <p>Just say <kbd>Alexa, what's the weather like?</kbd> to get a weather report for your area.</p>  
+
+### `<samp>`: What did the computer say?
+When reporting computer-generated messages, use the `<samp>` element.
+
+    <p>I tried to install WordPress, but the screen said <samp>500 Internal Server Error</samp>.</p> 
+
+### Combining elements
+
+🥪 It may also be helpful to combine several of these elements while writing documentation. Both `<code>` and `<samp>` in the below example will render within the `<pre>` box. In this case, we're looking at our code plus the output generated from that code.
+
+    <pre>
+       <code class="language-javascript">
+          console.log("Hello, world!");
+       </code>
+       <samp>
+          Hello, world!
+       </samp> 
+    </pre>
+
+### Like peanut butter and jelly
+
+🥪 `<kbd>` and `<samp>` go together like peanut butter and jelly — they were made for each other. [CSS-Tricks has a great article on how these elements work together](https://css-tricks.com/html-elements-unite-the-voltron-like-powers-of-combining-elements/#keyboard-sample-and-variable), as well as other hard-working element teams (like `<abbr>` and `<dfn>`, or `<cite>` and `<blockquote>`, covered earlier).
+
+### [`<kbd>` and `<samp>` demo](https://codepen.io/jen4web/pen/MWJQmZK)
