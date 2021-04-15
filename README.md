@@ -683,3 +683,95 @@ When reporting computer-generated messages, use the `<samp>` element.
 🥪 `<kbd>` and `<samp>` go together like peanut butter and jelly — they were made for each other. [CSS-Tricks has a great article on how these elements work together](https://css-tricks.com/html-elements-unite-the-voltron-like-powers-of-combining-elements/#keyboard-sample-and-variable), as well as other hard-working element teams (like `<abbr>` and `<dfn>`, or `<cite>` and `<blockquote>`, covered earlier).
 
 ### [`<kbd>` and `<samp>` demo](https://codepen.io/jen4web/pen/MWJQmZK)
+
+
+# `<var>`
+
+If you are referencing math or programming, or writing out a math equation, the variables in those expressions can be wrapped in a `<var>` element.
+
+The browser will often render the variable as italicized by default, but like with many things on the web, it depends.
+
+### Examples using `<var>`
+✅ <var> is useful when you are discussing your programming:
+
+    <pre>
+      <code>
+        for(let i = 0; i<10; i++) {
+          console.log(i); 
+        }
+      </code>
+    </pre>  
+    <p>This code loops over an index position, <var>i</var>, and prints out
+    all of the numbers from 0 to 9.</p> 
+✅ Or when writing out a simple math formula:
+
+    <p>The area of a circle can be found by multiplying pi times the radius
+    squared, which we can write as π<var>r</var><sup>2</sup></p> 
+❓Not much is written about <var>. It really is a simple element! But our feeling is that it can be used in conjunction with `<code>`, `<pre>`, `<kbd>` and `<samp>` as needed.
+
+### Reminder about writing math
+If you need to write out a lot of math, like you're Matt Damon in Good Will Hunting, then WHATWG and MDN both suggest considering the [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML) standard, which is essentially special XML tags for math equations.
+
+### [`<var>` demo](https://codepen.io/erika4web/pen/gOgewqm?editors=1000)
+
+# `<time>` `<time>` `<time>`
+
+✅ `<time>` identifies 24-hour clock times, as well as Gregorian calendar dates. It may also be used for a time duration.
+
+⛔️ Time has many confusing formats across programming languages and other standards. That's where all of the potential issues are, not in the HTML itself.
+
+There are no fewer than [58 examples of how `<time>` might be formatted in the WHATWG documentation](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-time-element).
+
+### `<time>` in the HTML sense
+✅ `<time>` indicates where time is occurring in your text, including dates, times, and durations.
+
+Let's identify the time elements in this paragraph of text:
+
+    <p>The last in-person conference I attended was ConFoo in Montreal,
+    Canada. It was held <time>February 26</time> to <time>February 28, 
+    2020</time>. There were at least <time>7 1/2 hours</time> of sessions 
+    each day. I flew home on <time>Saturday at 1:03PM</time>.</p> 
+While these time cues are understandable to humans, they are not machine-readable. The above paragraph would fail validation for this reason.
+
+⚠️ Either the text in between the `<time>` tags must be machine-readable as defined in the spec, or we'd need to use the datetime attribute. And let's be honest - no humans want to read machine-readable formats, so it’s all about datetime.
+
+    <p>The last in-person conference I attended was ConFoo in Montreal, 
+    Canada. It was held <time datetime="2020-02-26">February 26</time> to 
+    <time datetime="2020-02-28">February 28, 2020</time>. There were at 
+    least <time datetime="PT7H30M">7 1/2 hours</time> of sessions each day. 
+    I flew home on <time datetime="2020-02-29T13:03">Saturday</time>.</p> 
+
+### Formatting common time
+The following formats may be used as content in `<time>` or as the value of a datetime attribute.
+
+- **Year-month-day**. Year or day are optional.
+
+- **Hour:minute:seconds**. Seconds are optional and may include a decimal.
+
+- **Year-month-day hour:minute:seconds** OR **Year-month-dayThour:minute:seconds**. There must be either a T or a space between the date and the time for machine parsing.
+
+### Other types of time to format
+[Look them up if you need them.](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-time-element)
+
+- Time zones and time zone offsets
+
+- Global date and time strings
+
+- Week numbers (like 2021-W17)
+
+- A duration string (like 8h, or 2h 12m 16s, or PT2H12M16S)
+
+### Other uses of time
+Don't confuse `<time>` with three possible `<form>` inputs and two elements:
+
+- `<input type="time">`, specifically for hours and minutes (seconds optional)
+
+- `<input type="date">`, specifically for year-month-day
+
+- `<input type="datetime-local">`, specifying a date and a time in a single input.
+
+- `<ins>` and `<del>`, as discussed recently, also use the datetime attribute.
+
+All of the above elements use the same date and time formatting used for `<time>` and *datetime* as values.
+
+### [`<time>` demo](https://codepen.io/jen4web/pen/OJWZBxj?editors=1000)
