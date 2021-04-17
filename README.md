@@ -777,3 +777,103 @@ All of the above elements use the same date and time formatting used for `<time>
 ### [`<time>` demo](https://codepen.io/jen4web/pen/OJWZBxj?editors=1000)
 
 # `<noscript>`
+
+Only a handful of people deliberately disable JavaScript in their web browser these days. However, events that result in no access to JavaScript still transpire: your multi-megabyte JavaScript file fails to download, CDNs go offline, someone’s corporate network blocks something, or network errors happen.
+
+**What happens if there is no JavaScript?** What does your site visitor see? Sometimes, it's nothing at all... the White Screen of Death.
+
+Now, clearly you should be a good enough programmer to have mechanisms in place to recover gracefully if something fails along the way. But as a final remedy, <noscript> is there to provide content when nothing else works.
+
+[*Smashing Magazine*](https://www.smashingmagazine.com/2018/05/using-the-web-with-javascript-turned-off/) does a great job of explaining these scenarios and examining major sites and their fallbacks for when there is no JavaScript.
+
+### Understanding `<noscript>`
+It's pretty simple. `<noscript>` shows up on the page when JavaScript fails for whatever reason.
+
+If JavaScript writes 100% of your page, then `<noscript>`'s content might be the only thing you'd see in JavaScript's absence.
+
+If JavaScript writes less than 100% of your page, you'd see anything that doesn't rely on JavaScript to display, but the JavaScript effects would fail and any content placed in `<noscript>` would display instead.
+
+    <noscript>
+        <h2>Something bad happened</h2>
+        <p>You, dear user, did nothing wrong. But something failed, 
+            and the page did not load correctly.</p>
+         <!-- maybe tell the user what to do next? --> 
+    /noscript> 
+When JavaScript is active, that text will not display.
+
+### Use `<noscript>` in the `<head>` or `<body>`
+
+`<noscript>` may be used in the `<head>` of the document, not just the `<body>`. If you need different `<link>`, `<style>`, or `<meta>` tags if JavaScript doesn't load, you may include those there.
+
+    <head>
+       <noscript>
+         <!-- this CSS loads when all of the CSS I stuffed in my JavaScript doesn't -->
+         <link href="realcss.css" rel="stylesheet">
+       </noscript>
+    </head> 
+
+### Twitter is using `<noscript>`
+As Smashing Magazine pointed out, Twitter uses `<noscript>` on their site. However, their implementation has changed since 2018, when the article was written. Visit Twitter in the browser of your choice and view source for a tweet or your feed. Lines 48-125 show a `<noscript>` implementation that include both embedded CSS and a little HTML. It’s a mini-web page inside of a web page!
+
+Previously, according to the Smashing Magazine article, Twitter used a meta-refresh element inside of `<noscript>`:
+
+    <noscript>
+       <meta http-equiv="refresh" content="0; URL=https://mobile.twitter.com/i/nojs_router?path=%2F">
+    </noscript>
+
+That implementation will redirect the user from the current page to whatever information you want the user to have when JavaScript isn’t available.
+
+### Accessibility considerations
+`<noscript>` is indeed accessible, assuming its contents are also accessible. However, as WebAIM points out:
+
+⚠️ *`<noscript>` is an alternative to scripting, NOT an alternative for inaccessibility.*
+
+# `<section>` and `<article>`
+
+We're starting our new unit on parts of the web page. You have probably heard of these elements before. You may even have a sense of what they do. But unfortunately, they seem to be missing on many web pages. 👀
+
+Web page parts are more than `<head>` and `<body>`, no? We remember the bad old days of `<div id="header">` and `<div class="section">` and soooo many `<div>`s because we had no other options. Thank goodness we have semantic tags that help us identify the parts of our web pages.
+
+Rather than spending a bunch of time showing you how to code with these elements -- which you already know -- let's focus instead on their meaning and proper use. It's all driven by the content.
+
+## `<div>` vs `<section>` vs `<article>`
+All three of these elements contribute no styling to the page in their default format. So why does it matter so much which one you choose? Because element choice communicates meaning and intention behind the scenes to screen readers, search engines, and many other robots and machines coming your way in the future.
+
+### `<article>`
+`<article>` is the most specific of these. An `<article>` is a piece of content that could stand on its own without any other supporting materials and still be understandable. As [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article) and [WHATWG](https://html.spec.whatwg.org/multipage/sections.html#the-article-element) say, candidates include "a forum post, a magazine or newspaper article, or a blog entry, a product card, a user-submitted comment, an interactive widget or gadget, or any other independent item of content."
+
+While there are no specific requirements for types of content in an article, it will generally contain a headline and supporting text. 🖥 See the CodePen demo for an example.
+
+### `<section>`
+A <`section>` contains related content that may or may not stand on its own. It may be a section of blog articles, a section of comments, a section of images. In today's common web design patterns, it might be a jumbotron or hero banner, the three boxes describing your product, or the row with the testimonials in it.
+
+Like articles, sections usually have a heading inside of them.
+
+[In a recent *Smashing Magazine* article](https://www.smashingmagazine.com/2020/01/html5-article-section/), Bruce Lawson recommends combining `<section>` with an appropriate ARIA label for better compatibility with screen readers.
+
+`<div>`
+A `<div>` is the most generic item of the bunch. It's useful for holding a CSS class or JavaScript *data-* attributes without adding anything to the page's meaning.
+
+✅ `<div>` should, ideally, be your **last choice** for marking up parts of your web page, rather than your first.
+
+### Where it gets complicated
+🧩 All of these elements nest inside of each other. You already knew that about `<div>`. It’s also true with `<article>` in `<article>`, `<section>` in `<section>`, `<section>` in `<article>`, and `<article>` in `<section>`. No one wants to see that here, so look at 🖥 the [CodePen demo](https://codepen.io/erika4web/pen/QWdBGmO) for an example.
+
+### Determining the right element to use
+There are other parts of the page we'll cover in the coming days, including `<main>`, `<aside>`, `<nav>`, `<header>`, `<footer>`, and the proper use of `<h1>`-`<h6>` in setting up your pages. However, we find that our students most commonly confuse the use of `<article>`, `<section>`, and `<div>`.
+
+✅ We think it's fair to say that all `<article>` elements might be `<section>` elements, and all `<section>` elements might be `<div>` elements. However, the reverse is not true. A Venn diagram might be appropriate.
+
+![img.png](img.png)
+
+
+### Related or syndicated?
+You could also ask yourself: Related or syndicated?
+
+✅ If the items are related, and they should be grouped as such, that's a `<section>`.
+
+✅ If the item would stand alone in a syndicated format, it's an `<article>`.
+
+✅ If it’s neither, it might be a `<div>`, or it might be one of the additional elements we’ll cover in the coming days.
+
+### [`<article>` and `<section>` demo](https://codepen.io/erika4web/pen/QWdBGmO)
