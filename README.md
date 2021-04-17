@@ -775,3 +775,5 @@ Don't confuse `<time>` with three possible `<form>` inputs and two elements:
 All of the above elements use the same date and time formatting used for `<time>` and *datetime* as values.
 
 ### [`<time>` demo](https://codepen.io/jen4web/pen/OJWZBxj?editors=1000)
+
+# `<noscript>`
