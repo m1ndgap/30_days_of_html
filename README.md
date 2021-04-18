@@ -877,3 +877,48 @@ You could also ask yourself: Related or syndicated?
 ✅ If it’s neither, it might be a `<div>`, or it might be one of the additional elements we’ll cover in the coming days.
 
 ### [`<article>` and `<section>` demo](https://codepen.io/erika4web/pen/QWdBGmO)
+
+# `<main>` and `<aside>`
+
+Continuing with the theme of elements you probably already know, but you may not be using correctly, let's look at `<main>` and `<aside>`. They are studies in opposites, which makes them fun to consider together.
+
+### What's your `<main>` focus?
+If it's the main focus of the page, the part of the page that holds the meaning for your visit or the app that visitors want to use, that's the part that should be in a `<main>` element.
+
+`<main>` is different than `<article>` or `<section>` in that **there can only be one** `<main>` element per page.
+
+Inside of `<main>`, you may have article(s), section(s), application(s), or anything else that is **unique** to this particular page. Think of `<main>` for the page focus, rather than as identifying a specific type of content. It's not structural, in other words. It's not for repeated elements of any kind (think logos, nav bars, advertising, related articles, etc.).
+
+![img_1.png](img_1.png)
+
+If your website were a textbook, your `<main>` focus would be the black text on the white background, not the black boxes (those are `<aside>` most likely). This might also be an `<article>` structurally speaking, but its focus is the `<main>` point of the site.
+
+### As an `<aside>`...
+
+In theater, an aside is when an actor talks to the audience about what's going on. In *The Office*, it was often Jim talking to the camera, helping us understand what's going on.
+
+In a magazine or other printed content, an aside is often styled as a pull quote or other content separated from the rest of the page and maybe highlighted in some way. The information may be related to the main text, but it's not its focus.
+
+In your HTML, an `<aside>` is anything that's supporting material for your web page.
+
+In this textbook (see image above), the `<aside>` would be the black boxes. It's related material, helping us understand the focus of the rest of the page, whether that's marked up with a `<main>`, `<article>`, or `<section>`.
+
+⚠️ Sidebars and pull quotes are most commonly mentioned in conjunction with `<aside>`. **However, just because your design contains a right (or left) column for your page doesn't necessarily mean it's an `<aside>`**. That would be letting design drive your element choices, and we know that design is all about CSS, not HTML.
+
+### "Skip links" and accessibility
+One of the commonly mentioned items about accessibility and main content is including a so-called "skip link" in your web design. This is a simple internal page link, visible to screen readers but not necessarily exposed in the site design, that allows a "skip" from the top of the page to the main content when clicked.
+
+    <a href="#main">Skip to main content</a>
+    ...
+    <main id="main"> 
+✅ [CSS-Tricks offers a great article](https://css-tricks.com/how-to-create-a-skip-to-content-link/) with more details about this type of link and how to style it for compatibility with screen readers while maintaining invisibility on your site.
+
+### More than one `<main>`?
+⚠️ You may have more than one `<main>` element in use per page, *provided only one `<main>` is visible at a time*. [WHATWG](https://html.spec.whatwg.org/multipage/grouping-content.html#the-main-element) has an example of this. Otherwise, one `<main>` per page.
+
+### Things to avoid with `<aside>`
+⛔️ Do not use the `<aside>` element to identify text in parentheses, as this kind of text is considered part of the main flow.
+
+### [`<main>` and `<aside>` demo](https://codepen.io/erika4web/pen/ZELjmxg?editors=1000)
+
+
