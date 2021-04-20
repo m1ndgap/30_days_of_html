@@ -921,4 +921,60 @@ One of the commonly mentioned items about accessibility and main content is incl
 
 ### [`<main>` and `<aside>` demo](https://codepen.io/erika4web/pen/ZELjmxg?editors=1000)
 
+# `<nav>`
+
+`<nav>` is for navigation. You knew that. But still, we're horrified by the markup we see as "navigation" these days. We can do better.
+
+What `<nav>` is for
+Both [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav) and [WHATWG](https://html.spec.whatwg.org/multipage/sections.html#the-nav-element) state that `<nav>` is for "major navigation blocks" on the site. What might that mean?
+
+ - ✅ Your main navigation bar, usually located somewhere near the top of the page.
+
+- ✅ Sub-navigation for the page, maybe in a left column.
+
+- ✅ A table of contents for longer documents.
+
+- ✅ An index.
+
+### What `<nav>` isn't for
+ - ⛔️ Links in the footer to terms and conditions, privacy policy, etc. This isn't "major" navigation. Still, mark this up as an unordered list.
+
+ - ⛔️ Every link that goes anywhere on your page.
+
+### Marking up navbars
+- ✅ Navigation is a list of links. Although the marketing people deeply care about what order they links are listed in, they could be visited in any order. With that description, you know exactly how a navbar should be marked up.
+
+        <nav>
+           <ul>
+             <li><a href="#">Home</a></li>
+             <li><a href="#">About</a></li>
+             <li><a href="#">Contact</a></li>
+           </ul> 
+        </nav> 
+
+This produces a vertical navbar by default. CSS makes it go whatever way you want.
+
+### ⛔️ This is not a navbar.
+    <nav>   
+        <a href="#">Home</a> 
+        <a href="#">About</a> 
+        <a href="#">Contact</a> 
+    </nav> 
+
+### ⛔️⛔️This is even worse.
+
+    <div class="nav">   
+        <a href="#">Home</a> 
+        <a href="#">About</a> 
+        <a href="#">Contact</a> 
+    </div> 
+
+### CSS Hamburgers
+Are you a "hamburger menu" fan? It's possible to build this using only CSS, using the `:target` pseudoclass (not the checkbox trick!).
+
+[📚 Responsive, Pure CSS Off-Canvas Hamburger Menu](https://medium.com/@heyoka/responsive-pure-css-off-canvas-hamburger-menu-aebc8d11d793)
+
+Jen's 🎥 [Advanced CSS Layouts](https://frontendmasters.com/courses/advanced-css-layouts/) course at Frontend Masters covers this technique as well (subscription required).
+
+### [`<nav>` demo - making nav bars horizontal](https://codepen.io/jen4web/pen/dyNqMKx?editors=1100)
 
