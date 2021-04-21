@@ -978,3 +978,5 @@ Jen's 🎥 [Advanced CSS Layouts](https://frontendmasters.com/courses/advanced-c
 
 ### [`<nav>` demo - making nav bars horizontal](https://codepen.io/jen4web/pen/dyNqMKx?editors=1100)
 
+# `<header>` and `<footer>`
+
