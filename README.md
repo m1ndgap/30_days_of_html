@@ -980,3 +980,190 @@ Jen's 🎥 [Advanced CSS Layouts](https://frontendmasters.com/courses/advanced-c
 
 # `<header>` and `<footer>`
 
+`<header>` is for the top of your web page, while `<footer>` is for the bottom. Yup, you guessed it - not that simple! Just as we learned with `<address>` back on Day 1, the placement of `<header>` and `<footer>` is critical to communicating meaning.
+
+### The Rules of `<header>` and `<footer>`
+There are lots of common characteristics between `<header>` and `<footer>` in terms of what is permitted and how they are used.
+
+⛔️ These elements may not contain themselves or each other. In other words, no `<header>` in `<footer>` or `<footer>` in `<header>`; no `<header>` in `<header>`; no `<footer>` in `<footer>`. Furthermore, neither `<header>` nor `<footer>` may appear in `<address>`.
+
+✅ When these elements appear close to the `<body>` and `</body>` tags, it's assumed these elements are the `<header>` and/or `<footer>` for the document. (This is similar to `<address>`.)
+
+✅ When these elements appear in a `<section>` or `<article>`, it is assumed they are they `<header>` and/or `<footer>` for that `<section>` or `<article>`.
+
+✅ `<header>` and `<footer>` are never required, but they are convenient and helpful for organizing the beginning and ending of pages and documents.
+
+### `<footer>` in other places
+✅ We already saw how `<footer>` is an option to use in a `<blockquote>` following the MDN example back in our `<blockquote>` and `<cite>` posts.
+
+    <blockquote>
+        <p>Bounty hunting is a complicated profession.</p>
+        <footer>The Client in 
+            <cite>
+                <a href="https://www.starwars.com/news/the-mandalorian-quotes">The Mandalorian</a>
+            </cite>
+        </footer>  
+    </blockquote>
+
+Also, `<footer>` is not exclusively limited to the bottom of a document. WHATWG’s example shows `<footer>` marking up a return to the home page:
+
+    <body>
+     <footer><a href="../">Back to index...</a></footer>
+     <hgroup>
+      <h1>Lorem ipsum</h1>
+      <h2>The ipsum of all lorems</h2>
+     </hgroup>
+     <p>A dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+     <footer><a href="../">Back to index...</a></footer>
+    </body>
+
+### How complicated is this?
+For `<header>` and `<footer>`? Not too bad. But headings, as in `<h1>` to `<h6>`, assigning these correctly, and that little `<hgroup>` element in that previous example? That can be a nightmare. (Also, please don’t send mean tweets over `<hgroup>`.) Explained tomorrow, we promise!
+
+Today’s CodePen demo also has a lot of comments in it, explaining our placement of headings, headers, footers, articles, and more.
+
+### [`<header>` and `<footer>` demo](https://codepen.io/erika4web/pen/rNjqBjG?editors=1000)
+
+# Headings and their proper use
+
+You know headings, from `<h1>` to `<h6>`. You know your friends in accessibility tell you to get these in the right order and "don't skip levels." Perhaps you know what this means, but you're not sure if you're doing it right. Also, what about subheadings and some of the crazy things designers do these days with little text and big text? It's a mess.
+
+### What you should never do
+⛔️ ⛔️ ⛔️ **Never choose a heading based on the size of the text**. CSS can make your text any size you want. With that out of the way...
+
+### Understanding sequential heading levels
+Headings aren't hard to understand when we're talking about one linear article.
+
+    <article>
+       <h1>All about fruit</h1>
+       ...
+       <h2>Citrus fruits</h2>
+         <h3>Oranges</h3>
+         <h3>Lemons</h3>
+       <h2>Apples</h2>
+       <h2>Stone fruits</h2>
+         <h3>Peaches</h3>
+           <h4>Cling Peaches</h4>
+           <h4>Freestone Peaches</h4>
+         <h3>Plums</h3>
+     </article> 
+Cling peaches are part of peaches, which are part of stone fruits, which are part of fruit in general. Apples are also part of fruit in general, but are not related to freestone peaches. If we diagrammed the heading relationships, it would look like this:
+
+![img_3.png](img_3.png)
+
+When your accessibility friends tell you "don't skip levels," **this is what they're talking about**. We have a smooth flow of information from broad to narrow through our document.
+
+### But pages aren't like this
+Pages, however, are broken into little pieces. It may be easy enough to get the headings to flow through the article. But what about the `<aside>` in the sidebar? Headings associated with testimonials or navigation? How are all of these numbered?
+
+### Solution 1: Each section has its own numbering
+One possible solution is to have each section of the page contain its own heading numberings. (In this case, "section" refers to sectioning content -- elements like `<article>`, `<section>`, `<aside>`, and so forth.) With this solution, it's possible that each section starts with `<h1>`.
+    
+    <body>
+       <header>
+         <h1>My Fine Website</h1>
+       </header>
+       <article>
+         <h1>Article title</h1>
+       </article>
+       <aside>
+         <h1>Aside title</h1>
+       </aside>
+       <section>
+         <h1>Section title</h1>
+       </section>
+       <footer></footer>
+    </body> 
+
+**Advantage:** reordering these sections of the page becomes easy, because we do not need to change headings. Easy for *you*. **But good user experience**?
+
+**Disadvantage:** There are a bunch of `<h1>` elements, and depending on who you speak with, this may or may not be an issue. Also, is that a good user experience?
+
+### Solution 2: There is one `<h1>` for the page, and everything else numbers from there
+
+This is the more common approach on most websites, and in our opinion, it provides a better user experience. There is a widespread belief that Google penalizes sites for more than one `<h1>`. **This is not true** (see video below). There are also reports of issues with screen readers misunderstanding a document full of `<h1>` elements. However, other reports seem to think this is not an issue. We are not screen reader experts, and we welcome comments from those who are.
+
+    <body>
+       <header>
+         <h1>My Fine Website</h1>
+       </header>
+       <article>
+         <h2>Article title</h2>
+       </article>
+       <aside>
+         <h3>Aside title</h3>
+       </aside>
+       <section>
+         <h2>Section title</h2>
+       </section>
+       <footer></footer> 
+    </body> 
+
+The above structure would imply that My Fine Website, the site identity, is the most important item on this page. The `<article>` and `<section>` are all weighted equally in importance, with the `<aside>` slightly less so.
+
+### The `<hgroup>` controversy and subheadings, subtitles, and taglines
+🤷🏿‍♂️ How does one mark up things like subtitles, subheadings, and taglines? There are no specific elements for this. If the title gets the heading, what does the subheading get?
+
+### WHATWG: Use `<hgroup>` which is totally a thing
+[According to WHATWG](https://html.spec.whatwg.org/multipage/sections.html#the-hgroup-element), `<hgroup>` is an element that should group headings to indicate they are related to each other. Emphasis is given to the highest number in the group, and the lowest number is not considered another implicit section of the page (as happens with most headings).
+
+    <hgroup>
+       <h2>Before You Code</h2>
+       <h3>Validate Your Idea, Plan Your Product, and Iterate Your Way to Success</h3> 
+    </hgroup> 
+Here, this would indicate that "Before You Code" is a title of some kind, and perhaps the `<h3>` is a subtitle or tagline. **The `<h3>` does not implicitly start a new section of content when it is inside of the `<hgroup>` element**. In contrast, in the fruit example above, those headings **do** implicitly start a new section of the `<article>`.
+
+### MDN: `<hgroup>` is deprecated so don't use it
+[From MDN's `<hgroup>` explanation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hgroup):
+
+
+> "However, given that a key purpose of the <hgroup> element is to affect how headings are displayed by the outline algorithm defined in the HTML specification—but the HTML outline algorithm is not implemented in any browsers—then the <hgroup> semantics are in practice only theoretical.
+> 
+> So the HTML5 (W3C) specification provides advice on how to mark up Subheadings, subtitles, alternative titles and taglines without using `<hgroup>`."
+
+### W3C's recommended markup
+MDN's `<hgroup>` page points us to the W3C, [which has other recommendations for tricky multi-heading markup](https://www.w3.org/TR/html52/common-idioms-without-dedicated-elements.html#common-idioms-without-dedicated-elements) where no dedicated elements exist.
+
+Let's take a common example seen online these days. The designer wants this:
+
+![img_4.png](img_4.png)
+
+❓ We have 3 important leading lines of text before this article begins. The middle one has the big text in the design. Does that mean it should also get the major heading?
+
+✅ Hopefully, you said, "It depends," which is always the right answer in these situations.
+
+Of the three lines of text in that graphic before the main text begins, which is the most important? Probably "What We Do," because that first line of text explains, “Our aim is to ensure that the financial services sector has the talent and skills it needs” and the last line in the heading says, “Building skills in financial services.” We may even argue that "Collaborate/Retain/Develop" isn't the most important line of text, even if it's the largest. It’s a modifier to the main message: we build skills in financial services.
+
+Therefore, one way to mark this up might be as follows (assuming we have an `<h1>` elsewhere on the page):
+
+    <article>
+      <header>
+         <h2>What We Do</h2>
+         <p class="title">Collaborate / Retain / Develop</p>
+         <p class="subhead">Building skills in financial services</p> 
+      </header> 
+      <p>Our aim is to ensure...</p>
+    </article>
+This follows [Example 4 in the W3C suggestions](https://www.w3.org/TR/html52/common-idioms-without-dedicated-elements.html#common-idioms-without-dedicated-elements).
+
+Alternatively, following WHATWG's recommendation, it might look like this:
+
+    <article>
+      <hgroup>
+         <h2>What We Do</h2>
+         <h4>Collaborate / Retain / Develop</h4>
+         <h3>Building skills in financial services</h3> 
+      </hgroup> 
+      <p>Our aim is to ensure...</p>
+    </article>
+Here, the most important item gets the H2, with items of lesser importance ranked accordingly. Style the text to look the same as the W3C example.
+
+⚠️ ⚠️ ⚠️ It’s worth noting that we have no connection with the Financial Services Skills Commission, nor are we familiar with their services. We are marking up the text from our outsider’s viewpoint. If the commission disagrees as to the importance of each line of text, then clearly the markup should change to reflect what they are trying to communicate. ***After all, that is what HTML is all about: identifying the structure of the web page and the purpose of each piece of information***.
+
+### The old `<h1>` controversy
+
+🤷🏿‍♂️ How many `<h1>` elements should you have on a page? A better question is what problem are you trying to address?
+
+👀 If you think multiple `<h1>` elements is bad for SEO, and that’s the reason you avoid doing it, Google says otherwise.
+
+https://youtu.be/zyqJJXWk0gk
