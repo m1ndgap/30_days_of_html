@@ -1166,4 +1166,156 @@ Here, the most important item gets the H2, with items of lesser importance ranke
 
 👀 If you think multiple `<h1>` elements is bad for SEO, and that’s the reason you avoid doing it, Google says otherwise.
 
-https://youtu.be/zyqJJXWk0gk
+[![img_5.png](img_5.png)](https://youtu.be/zyqJJXWk0gk)
+
+*Basically, whatever you put on a page, Google will find a way to consume it. People write crappy code of all kinds. Google deals with it.*
+
+**✅ The better question regarding H1s is that of accessibility, usability, and the message your site is trying to communicate, rather than SEO considerations.**
+
+As mentioned above, we recommend using headings for sectioning your page and its importance. Chances are that a page of `<h1>`'s makes no sense. But then, a page of nothing but `<h2>` and `<h3>` may also not make sense.
+
+### [Headings demo](https://codepen.io/erika4web/pen/VwPEgRN?editors=1000)
+
+# Day 22: `<table>` , `<tr>`, and `<td>`
+## Tables are not the root of all evil 👹
+
+The web was invented by Dr. Tim Berners-Lee, a physicist who wanted to share his scientific research over the internet. It's no surprise that tabular data was among the information he wished to share, and indeed, [tables were part of the very first HTML specification around 1993](https://www.w3.org/MarkUp/HTMLPlus/htmlplus_39.html).
+
+But then some ugly things happened, and tables are something of a swear word in HTML. They shouldn't be, when they're used correctly.
+
+### A brief and ugly history of tables
+
+In 1995, David Siegal wrote one of the first web design books called "[Creating Killer Web Sites](https://www.killersites.com/killerSites/core.html)". It was highly influential at the time, and it contained instructions about how to use HTML tables to lay out web pages.
+
+[Even though CSS was first described in 1994](https://www.w3.org/Style/CSS20/history.html), CSS integration with browsers was always one step behind. It would not be until roughly 2004 when the first basic CSS properties, mostly font-related, could be reliably used across browsers. Layout took much longer.
+
+Furthermore, until Flexbox and Grid came along, we had no reliable and responsive CSS layout methodologies for full web pages. Tables were the first hack in this regard, later displaced by the float hack. Absolute and relative positioning were available but weren’t designed to lay out full web pages.
+
+Therefore, from roughly 1995-2004, tables were the only reliable option for layout. Nine years is a long time to ingrain some habits, so the transition to float-based layouts was hard. (Many of Jen’s PHP developer friends still mourn the loss of table-based layouts to this day.)
+
+Unfortunately, the message conveyed to those new to the field was that tables should never be used for anything, rather than to use tables for tabular data. Tables were unfairly tossed into the 😖Dustbin of Frowned-Upon Elements😖 for a few years. For some developers, they remain there to this day.
+
+Unfortunately, the message conveyed to those new to the field was that **tables should never be used for anything**, rather than to use **tables for tabular data**. Tables were unfairly tossed into the 😖*Dustbin of Frowned-Upon Elements*😖 for a few years. For some developers, they remain there to this day.
+
+### `<table>` for tabular data
+
+✅ If it goes in a spreadsheet, it should go in an HTML table. Data is made for a table.
+
+⛔️ CSS Grid is for layouts.
+
+**Over the next few days, we'll look at how to mark up your data correctly**. For now, let's start with the minimum tags you'll need to start a table.
+
+### `<table>`, `<tr>`, `<td>`
+To start a table, use the <table> element. You don't need any attributes (although these were common back in the day).
+
+`<tr>` designates **table rows**, while `<td>` designates table cells, or the table data.
+
+Interestingly, there are no columns called out specifically in a table.
+
+In its most basic format, a table might look like this:
+
+    <table>
+       <tr>
+         <td>Date</td>
+         <td>Time</td>
+         <td>Temperature</td>
+       </tr>
+       <tr>
+         <td><time datetime="2021-04-22">April 22</time></td>
+         <td><time datetime="11:00">11 AM</time></td>
+         <td>50&deg;F/10&deg;C</td>
+       </tr> 
+    </table> 
+🖥 [In today's Example 2 in CodePen](https://codepen.io/erika4web/pen/XWpyExo), we have another example with more rows and columns.
+
+## `<td>`: *colspan* and *rowspan*
+Back in the day, when tables were our workhorse for layout and there was little (or no) CSS for styling, there were a zillion attributes for colors, alignments, widths and heights, borders, and much more. Nearly all of these have been deprecated.
+
+colspan and rowspan, assigned to the `<td>` element, are two that remain. As you might guess, colspan is about spanning columns, while rowspan is about spanning rows.
+
+    <table>
+       <tr>
+         <td colspan="2">This cell spans 2 columns</td>
+         <!-- because the above td spans 2 cells, this td is not present -->
+       </tr>
+       <tr>
+         <td>A cell by itself</td>
+         <td rowspan="2">This cell spans two rows</td>
+       </tr>
+       <tr>
+         <td>A cell by itself</td>
+         <!-- the second td position is occupied by the previous rowspan -->
+       </tr> 
+    </table> 
+The resulting table would look like this, with a 2px border added to the `<td>` for styling purposes:
+
+![img_6.png](img_6.png)
+
+The confusing part of *colspan* and *rowspan* is tracking which `<td>` elements are not needed on the next row or column. This gets trickier with increasing numbers of cells spanning columns and/or rows.
+
+### Styling tables
+Using the above table example as our HTML, styling in a table is truly minimal by default:
+
+![img_7.png](img_7.png)
+
+Table rendered with no styling is very difficult to read.
+Adding the following CSS:
+
+    table {
+        border: 2px dotted blue;
+    }
+    td {
+        border: 2px solid black;
+    } 
+
+![img_8.png](img_8.png)
+
+Here we have a border around each cell, plus a border around the table itself. There is a tiny gap between each cell. To get rid of this, add a border-collapse property to the table:
+
+    table {
+        border: 5px dotted blue;
+        border-collapse: collapse;  
+    }
+    td {
+        border: 2px solid black;
+    } 
+
+![img_9.png](img_9.png)
+
+Why is the outside border dotted blue from the `<table>` instead of solid black from the `<td>` after border collapse? The `<table>` border is 5px wide, while the `<td>` border is 1px wide. The fatter border wins. If they’re exactly the same width, the `<td>` wins. (Try changing border widths in one of the tables in today’s 🖥 [CodePen demo](https://codepen.io/erika4web/pen/XWpyExo).) We don’t need it anymore, so we’ve removed it.
+
+    table {
+        border-collapse: collapse;
+    }
+    td {
+        border: 2px solid black;
+    } 
+
+![img_10.png](img_10.png)
+
+To keep the text from butting up against the black borders, add padding on your `<td>` elements.
+
+    table {
+        border-collapse: collapse;
+    }
+    td {
+        border: 2px solid black;
+        padding: 0.5rem;
+    } 
+
+![img_11.png](img_11.png)
+
+Finally, by default, `<td>` has their contents aligned horizontally to the left and vertically to the middle. You may wish to align their contents to the top of the cell for maximum readability.
+
+    table {
+        border-collapse: collapse;
+    }
+    td {
+        border: 2px solid black;
+        padding: 0.5rem;
+        vertical-align: top;
+    }
+
+![img_12.png](img_12.png)
+
+### [`<table>`, `<tr>` and `<td>` demo](https://codepen.io/erika4web/pen/XWpyExo)
