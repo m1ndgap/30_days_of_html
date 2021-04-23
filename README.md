@@ -1319,3 +1319,135 @@ Finally, by default, `<td>` has their contents aligned horizontally to the left 
 ![img_12.png](img_12.png)
 
 ### [`<table>`, `<tr>` and `<td>` demo](https://codepen.io/erika4web/pen/XWpyExo)
+
+# `<caption>` and `<th>`
+
+To this point, we've looked at the three basic elements in tables: `<table>`, `<tr>`, and `<td>`. If you use only these three elements, you're already creating more semantic content than you would be using `<div>` and CSS Grid. However, we can still do better! There are more elements designed for tables that will boost accessibility and communicate more meaning about your data.
+
+`<caption>` is all about communicating the overall purpose of your table, and `<th>` is for table headings for rows and/or columns.
+
+### Understanding `<caption>`
+
+In an academic or scientific publication, when a table of data is presented, it always has some type of explanation to go with it. Often the data is given a name, like "Table 1" or similar, along with a brief explanation of what the data is and where it comes from.
+
+`<caption>` is the element for that purpose. `<caption>` may only be placed inside of `<table>`, and **it may only be the first child within the `<table>`**. Do not put your `<caption>` anywhere else.
+
+    <table>
+      <caption>Table 1: Date, time, and temperature recordings in 
+    Watertown, Massachusetts</caption>
+      <tr>
+        <td>Date</td>
+        <td>Time</td>
+        <td>Temperature</td>
+      </tr>
+      <tr>
+        <td>April 22</td>
+        <td>11 AM</td>
+        <td>50 deg F/10 deg C</td>
+      </tr>
+    </table>
+
+### Summarizing summaries
+
+Occasionally you may have a table that needs more explanation about what's going on inside of it. This may be for accessibility purposes or for general understanding of complicated tables. [The WAI presents four different ways to include these longer descriptions on their site](https://www.w3.org/WAI/tutorials/tables/caption-summary/#summaries-for-more-complex-tables):
+
+- ✅ Including the summary inside the `<caption>` element.
+
+- ❓ Using aria-describedby, which may not be supported by all screen readers.
+
+- ❓ Using `<figure>` and `<figcaption>`, which presents other problems for some screen readers detailed in the article.
+
+- ⛔️ Using the summary attribute for `<table>`, which has been deprecated in HTML5.
+
+In summary, if there's a description to include regarding your table, put it in `<caption>`.
+
+### Styling `<caption>`
+Using CSS, you may make the `<caption>` appear wherever you like.
+
+    caption {
+    caption-side: bottom;
+    }
+The [*caption-side* property in CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/caption-side) is only for use with the `<caption>` element or associated selectors targeting captions. top and bottom are the most common values.
+
+`<caption>` may also leverage all of the usual CSS properties you know and love, so change fonts, colors, sizing, and so forth as you normally would.
+
+### Understanding `<th>`
+`<th>` is for table headings. Table headings may occur at the top of columns, at the start of rows, or both. If it's a heading row in your spreadsheet, it should use `<th>` in your HTML.
+
+By default, `<th>` elements are bold and centered. As always, CSS may be used to adjust this.
+
+Revisiting our example, we've changed the `<td>` elements in the first row to `<th>` elements, as these are headings for the data that comes underneath. [This is in WCAG compliance for accessibility](https://www.w3.org/WAI/tutorials/tables/one-header/#table-with-header-cells-in-the-top-row-only), according to the W3C's Web Accessibility Initiative (WAI).
+
+    <table>
+      <caption>Table 1: Date, time, and temperature recordings in Watertown, Massachusetts</caption>
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Temperature</th>
+      </tr>
+      <tr>
+         <td><time datetime="2021-04-22">April 22</time></td>
+         <td><time datetime="11:00">11 AM</time></td>
+         <td>50&deg;F/10&deg;C</td>
+       </tr> 
+    </table> 
+What if we rearranged this table, such that the headings should be located at the start of each row instead? Again, [this format is in accessibility compliance with WAI](https://www.w3.org/WAI/tutorials/tables/one-header/#table-with-header-cells-in-the-first-column-only).
+
+    <table>
+      <caption>Table 1: Date, time, and temperature recordings in Watertown, Massachusetts</caption>
+      <tr>
+        <th>Date</th>
+        <td><time datetime="2021-04-22">April 22</time></td>
+        <td><time datetime="2021-04-23">April 23</time></td>
+      </tr>
+      <tr>
+         <th>Time</th>
+         <td><time datetime="13:00">1 PM</time></td>
+         <td><time datetime="11:00">11 AM</time></td>
+       </tr> 
+      <tr>
+         <th>Temperature</th>
+         <td>50&deg;F/10&deg;C</td>
+         <td>60&deg;F/16&deg;C</td>
+       </tr> 
+    </table>
+The *scope* attribute on the `<th>` is not required when the table is simple. But not all tables are simple.
+
+### Understanding the scope attribute
+Things get a little more complicated where we have row and column headers. In this case, the scope attribute is placed inside of `<th>` to indicate whether the header is referring to the col or row. This attribute is also useful for when any ambiguity may be present in regards to the header, whether there is one set of headers or two.
+
+The WAI offers this example on their site:
+
+    <table>
+      <caption>Delivery slots:</caption>
+      <tr>
+        <td></td>
+        <th scope="col">Monday</th>
+        <th scope="col">Tuesday</th>
+        <th scope="col">Wednesday</th>
+        <th scope="col">Thursday</th>
+        <th scope="col">Friday</th>
+      </tr>
+      <tr>
+        <th scope="row">09:00 - 11:00</th>
+        <td>Closed</td>
+        <td>Open</td>
+        <td>Open</td>
+        <td>Closed</td>
+        <td>Closed</td>
+      </tr>
+      <tr>
+        <th scope="row">11:00 - 13:00</th>
+        <td>Open</td>
+        <td>Open</td>
+        <td>Closed</td>
+        <td>Closed</td>
+        <td>Closed</td>
+      </tr>
+      […]
+    </table> 
+We also offer an example table with headers in the columns and rows, as well as extensive styling options, in today’s CodePen demo.
+
+### [`<caption>` and `<th>` demo](https://codepen.io/jen4web/pen/ZELVjdR?editors=1100)
+
+
