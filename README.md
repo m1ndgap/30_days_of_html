@@ -1450,4 +1450,99 @@ We also offer an example table with headers in the columns and rows, as well as 
 
 ### [`<caption>` and `<th>` demo](https://codepen.io/jen4web/pen/ZELVjdR?editors=1100)
 
+# `<thead>`, `<tbody>`, and `<tfoot>`
 
+Tables, like web pages, have their own set of parts. Today's elements are useful for grouping rows of information to designate the head, body, and foot of a table. None of these elements are required, but they may be useful for communicating information in complex table environments. They may also be useful for styling purposes.
+
+### `<thead>`, `<tbody>`, and `<tfoot>` requirements
+
+Let's start with an example so you can see an example of these elements in use. (Data comes from NASA's Planetary Fact Sheet.) This is a table marked up with the elements we've covered so far.
+
+    <table>
+      <caption>Diameter and Length of Day for Mercury, Venus, and Earth</caption>
+      <tr>
+        <td></td>
+        <th scope="col">Mercury</th>
+        <th scope="col">Venus</th>
+        <th scope="col">Earth</th>
+      </tr>
+      <tr>
+        <th scope="row">Diameter (km)</th>
+        <td>4879</td>
+        <td>12,104</td>
+        <td>12,756</td>
+      </tr>
+      <tr>
+        <th scope="row">Length of Day (hours)</th>
+        <td>4222.6</td>
+        <td>2802.0</td>
+        <td>24.0</td>
+      </tr>
+    </table>
+
+We've minimized the planets and measurements for a shorter example, but as you know, there are 8 planets (plus Moon and Pluto in the Fact Sheet), and there are many more measurements to report. This table could get quite large.
+
+We may want to add a footer to the table, repeating the columns from our header.
+
+Many of these tasks are made easier by using `<thead>`,` <tbody>`, and `<tfoot>`. Let's repeat the table with these elements in place.
+
+    <table>
+      <caption>NASA Planetary Fact Sheet - Metric</caption>
+      <thead>
+        <tr>
+          <td></td>
+          <th scope="col">Mercury</th>
+          <th scope="col">Venus</th>
+          <th scope="col">Earth</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Diameter (km)</th>
+          <td>4879</td>
+          <td>12,104</td>
+          <td>12,756</td>
+        </tr>
+        <tr>
+          <th scope="row">Length of Day (hours)</th>
+          <td>4222.6</td>
+          <td>2802.0</td>
+          <td>24.0</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <th scope="col">Mercury</th>
+          <th scope="col">Venus</th>
+          <th scope="col">Earth</th>
+        </tr>
+      </tfoot>
+    </table>
+
+### How `<thead>`, `<tbody>`, and `<tfoot>` are used in a table
+✅ `<thead>`, `<tbody>`, and `<tfoot>` perform a grouping function within the table itself. `<table>` does not permit a `<div>` as a child, so this is the only way to group several rows of information.
+
+✅ `<thead>` may be useful for grouping several header rows in more complex table layouts. We'll examine some of these tomorrow.
+
+✅ `<tfoot>` is often used for totals or some other "bottom line" about your data. In the above example, we've used it to repeat the data from the header for easier table reading.
+
+### Notable usage requirements
+✅ `<thead>` may appear in the `<table>` by itself or with `<tfoot>` and/or `<tbody>`.
+
+✅ `<tfoot>` may appear in the `<table>` by itself or with `<thead>` and/or <tbody>.
+
+⚠️ However, `<tbody>` must not be present if there are any `<tr>` children of `<table>`. In other words, `<tbody>` would never be present without other rows included in a `<thead>` and/or `<tfoot>`.
+
+### Solutions for tables that are wider or taller than the page
+Two problems with tables on websites include long scrolling down the page, as well as tables that scroll off the page horizontally. It is possible to address both of these issues with CSS. `<thead>`, `<tbody>`, and `<tfoot>` often figure into these solutions because of their usefulness in grouping multiple rows.
+
+### Tables that are too wide
+For issues with a wide table, you may either add a scrollbar by the overflow property, or you may use a technique [similar to the one described by Adrian Roselli](https://adrianroselli.com/2017/11/a-responsive-accessible-table.html), where the table is deconstructed using various display values. (Or do both!) Unfortunately, we do not have time to cover this technique here, but Jen has videos demonstrating this technique at [Frontend Masters](https://frontendmasters.com/courses/advanced-css-layouts/) and [LinkedIn Learning](https://www.linkedin.com/learning/html-tables/) (subscriptions required for both).
+
+### Tables that are overly long
+If tables get so long that the heading elements scroll off the page, reading the table may become difficult.
+
+Using `<thead>`, it is possible to fix a header row to the top of the page, [as described here](https://medium.com/@vembarrajan/html-css-tricks-scroll-able-table-body-tbody-d23182ae0fbc).
+
+### [`<thead>`, `<tbody>`, and `<tfoot>` demo](https://codepen.io/erika4web/pen/ExZGqVr?editors=1100)
