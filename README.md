@@ -1546,3 +1546,96 @@ If tables get so long that the heading elements scroll off the page, reading the
 Using `<thead>`, it is possible to fix a header row to the top of the page, [as described here](https://medium.com/@vembarrajan/html-css-tricks-scroll-able-table-body-tbody-d23182ae0fbc).
 
 ### [`<thead>`, `<tbody>`, and `<tfoot>` demo](https://codepen.io/erika4web/pen/ExZGqVr?editors=1100)
+
+# `<col> and <colgroup>`
+
+At the end of our table unit, we have one more table scenario to consider. Yesterday, we discussed grouping rows with `<thead>`, `<tbody>`, and `<tfoot>`. That's not too hard, as a `<tr>` itself groups cells into a row, and we wrap `<thead>`, `<tbody>`, or `<tfoot>` around a row or several rows of data.
+
+Far more complicated, though is what happens when tables have a column grouping? That's where `<col>` and `<colgroup>` come in.
+
+### Grouping columns
+Let's say we want to create another table, this time comparing some of the rocky inner planets with two of the outer gas giants.
+
+    <table>
+        <caption>
+            Comparing rocky inner planets and outer gas giants
+        </caption>
+        <thead>
+            <tr>
+                <td></td>
+                <th scope="col">Venus</th>
+                <th scope="col">Earth</th>
+                <th scope="col">Jupiter</th>
+                <th scope="col">Saturn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Diameter (km)</th>
+                <td>12,104</td>
+                <td>12,756</td>
+                <td>142,984</td>
+                <td>120,536</td>
+            </tr>
+            <tr>
+                <th scope="row">Length of Day (hours)</th>
+                <td>2802.0</td>
+                <td>24.0</td>
+                <td>9.9</td>
+                <td>10.7</td>
+            </tr>
+        </tbody>
+    </table>
+While this table has done a great job of identifying headings and their scope, we should consider Venus and Earth as a unit, and Jupiter and Saturn as another unit.
+
+First, we can provide some grouping to this table with `<colgroup>` and `<col>`. These are placed at the top of the table, just after `<caption>` and before `<thead>`, if any.
+
+    <colgroup>
+        <col>
+        <col span="2" class="rocks">
+        <col span="2" class="gas">
+    </colgroup>
+As you see in the first HTML example, there are 5 columns per row. Within `<colgroup>` in the above example, we've accounted for all of these. The first column, which is where we've listed "diameter" and "length of day," is not grouped with the others. We then have groupings specified for columns 2-3 (Venus and Earth) and 4-5 (Jupiter and Saturn) using the span attribute. The class attribute is, as you’d expect, for styling purposes and is not required.
+
+The final HTML looks like this:
+
+    <table>
+        <caption>
+            Comparing rocky inner planets and outer gas giants
+        </caption>
+        <colgroup>
+            <col>
+            <col span="2" class="rocks">
+            <col span="2" class="gas">
+        </colgroup>
+        <thead>
+            <tr>
+                <td></td>
+                <th scope="col">Venus</th>
+                <th scope="col">Earth</th>
+                <th scope="col">Jupiter</th>
+                <th scope="col">Saturn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Diameter (km)</th>
+                <td>12,104</td>
+                <td>12,756</td>
+                <td>142,984</td>
+                <td>120,536</td>
+            </tr>
+            <tr>
+                <th scope="row">Length of Day (hours)</th>
+                <td>2802.0</td>
+                <td>24.0</td>
+                <td>9.9</td>
+                <td>10.7</td>
+            </tr>
+        </tbody>
+    </table>
+
+### Keeping crazy tables accessible
+How accessible is this crazy table? Very, [according to the Web Accessibility Initiative (WAI)](https://www.w3.org/WAI/tutorials/tables/irregular/). While we've covered the basics of `<colgroup>` and `<col>`, they've got a few more edge cases that might be of interest in their tutorials on [irregular headers](https://www.w3.org/WAI/tutorials/tables/irregular/) and [multi-level headers](https://www.w3.org/WAI/tutorials/tables/multi-level/).
+
+### [`<col>` and `<colgroup>` demo](https://codepen.io/erika4web/pen/vYgbWBz?editors=1000)
