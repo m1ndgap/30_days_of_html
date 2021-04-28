@@ -1639,3 +1639,88 @@ The final HTML looks like this:
 How accessible is this crazy table? Very, [according to the Web Accessibility Initiative (WAI)](https://www.w3.org/WAI/tutorials/tables/irregular/). While we've covered the basics of `<colgroup>` and `<col>`, they've got a few more edge cases that might be of interest in their tutorials on [irregular headers](https://www.w3.org/WAI/tutorials/tables/irregular/) and [multi-level headers](https://www.w3.org/WAI/tutorials/tables/multi-level/).
 
 ### [`<col>` and `<colgroup>` demo](https://codepen.io/erika4web/pen/vYgbWBz?editors=1000)
+
+# `<figure>` and `<figcaption>`
+
+Today launches our final unit, the Multimedia Extravaganza! Audio, video, and images of all kinds will be covered in the coming days. Today we start with two elements that we've repeatedly encountered over the past 25 days -- `<figure>` and `<figcaption>`.
+
+### `<figure>` and `<figcaption>` as image and caption
+
+[MDN says it best](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img): 
+
+> If an image needs a caption, use the figure and figcaption elements.
+
+This is the most common reason that developers use these versatile elements.
+
+    <figure>
+      <img src="img.jpg" alt="Meaningful description of image here, 
+        even if there's a caption.">
+      <figcaption>
+        This is the figure caption that is associated with the above image.
+      </figcaption>
+    </figure>
+
+### <figcaption> is not a substitute for alt
+⛔️ You may think, as many developers do, that if there's a `<figcaption>` present describing the image, that an alt attribute on the image is not required. [Not true, as Scott O'Hara points out](https://www.scottohara.me/blog/2019/01/21/how-do-you-figure.html):
+
+> ... an alt is meant to convey the important information an image represents. A figcaption should provide context to relate the figure (image) back to the primary document, or to call out a particular piece of information to pay attention to.
+
+In other words, if we were using [this image](https://en.wikipedia.org/wiki/American_robin#/media/File:Merle_d'Am%C3%A9rique,_juv%C3%A9nile_(_Turdus_migratorius).jpg) as a figure:
+
+![img_13.png](img_13.png)
+
+The *alt* attribute might be, "Young robin in the grass has a breast and throat with white and black patches, with some orange growing in." A sighted visitor would derive this information from looking at the image, while those without ability to see the image or its details would get it from the *alt* attribute.
+
+The figure caption, in contrast, might be, "Figure 12: Juvenile American Robin." This description alone is not useful if you are trying to understand what makes a juvenile robin different from an adult robin. However, the caption associates the image with the text, which (hopefully) references Figure 12.
+
+### `<figcaption>` placement and content
+✅ If `<figcaption>` is present, it must be the first child or the last child of the `<figure>` element.
+
+✅ `<figcaption>` may contain flow content - basically most of the usual HTML elements. If you want to include paragraphs of information, for example, you could do that.
+
+### `<figure>` without `<figcaption>`
+Why might a developer do this?
+
+    <figure>
+      <img src="img.jpg" alt="Meaningful description of image here.">
+    </figure>
+Instead of this?
+
+    <img src="img.jpg" alt="Meaningful description of image here."> 
+✅ If an image is include inside of `<figure>`, that image may be moved elsewhere on the page without disrupting the meaning of the document.
+
+⚠️ If the image is included by itself, without a `<figure>` wrapper, then the image is related to the content immediately around it.
+
+### `<figcaption>` pro tip
+Remember that what makes a `<figure>` special is that it can be moved in the document without detriment to the understanding of the document.
+
+⚠️ ⚠️ ⚠️ That means that if you're making reference to "the above image" or "the right side," your `<figure>` isn't free to move about.
+
+Instead, in your writing, refer to "Figure 1" or similar wording. Then in the `<figcaption>`, make reference to the same Figure 1. Now readers are able to easily connect your narrative to your figures, regardless of placement.
+
+### Multiple images in a `<figure>`
+You may absolutely include multiple images inside of a `<figure>`, as in [this example from WHATWG](https://html.spec.whatwg.org/multipage/grouping-content.html#the-figure-element).
+
+    <figure>
+      <img src="castle1423.jpeg" title="Etching. Anonymous, ca. 1423." alt="The castle has one tower, and a tall wall around it.">
+      <img src="castle1858.jpeg" title="Oil-based paint on canvas. Maria Towle, 1858." alt="The castle now has two towers and two walls.">
+      <img src="castle1999.jpeg" title="Film photograph. Peter Jankle, 1999." alt="The castle lies in ruins, the original tower all that remains in one piece.">
+      <figcaption>
+        The castle through the ages: 1423, 1858, and 1999 respectively.
+      </figcaption>
+    </figure>
+
+Other uses for <figure> and <figcaption>
+As we've seen this month, <figure> and <figcaption> may be used in marking up quotes, poems, audio, video, ASCII art, and code snippets, among others.
+
+<figure>
+    <figcaption>
+        <cite><a href="https://www.bbcamerica.com/anglophenia/2011/11/salman-rushdie-writes-a-limerick-for-kim-kardashian">"The Marriage of Poor Kim Kardashian,"</a></cite> by Salman Rushdie
+    </figcaption>
+    <p>The marriage of poor Kim Kardashian<br>
+    Was krushed like a kar in a krashian.<br>
+    Her Kris kried, not fair!<br>
+    Why kan’t I keep my share?<br>
+    But Kardashian fell klean outa fashian.</p>
+</figure>
+🖥 See today's CodePen demo and the WHATWG and MDN pages for more examples of <figure> and <figcaption> markup.
