@@ -1771,3 +1771,60 @@ Pexels offered us this beautiful photo of some dishes on the table.
 Photo by [Taha Samet Arslan](https://www.pexels.com/@tahaasamett?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels) from [Pexels](https://www.pexels.com/photo/food-plate-dinner-lunch-7624679/?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels)*
 
 Wouldn't it be lovely if people could click on the dish and get a link to a recipe? Or maybe they click on the dish and are taken to a website where they could buy that exact item? Let's walk through that process.
+
+### Step 0: Understanding the image map
+Image maps consist of three HTML elements:
+
+- The image itself, with a *usemap* attribute linking the image to the map
+
+- The `<map>` element, which contains the image map information and a name attribute which links the map to the image
+
+- `<area>` elements, each corresponding to a clickable hotspot. Each `<area>` element has a shape attribute, describing the shape of the hotspot. Values for shape include circle, rect, or poly.
+
+A typical image map might look like this:
+
+    <img src="food.jpg" alt="Image of four dinner dishes sitting on a table with plates, knives, and forks." usemap="#map">
+    
+    <map name="map" id="map">
+        <area alt="Link to recipe for chicken cashew stir-fry." 
+              target="_blank"
+              href="https://www.allrecipes.com/" 
+              coords="228,492,367,498,426,588,298, 697,166,688,100,614,128,548" 
+              shape="poly">
+    
+        <area alt="Example to show link going elsewhere on this website" 
+             href="nextpage.html" 
+             coords="531,301,727,525" 
+             shape="rect">
+    
+        <area target="_blank" 
+              alt="Visit Ikea.com to buy these plates." 
+              href="https://www.ikea.com/" 
+              coords="990,723,261" 
+              shape="circle">
+    </map> 
+The *coords* attribute describes a series of X-Y coordinates (and a radius, in the case of the circle) for the clickable area. [Refer to MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area#attributes) for a full explanation of coords.
+
+### Step 1: Creating the image map
+Back in the day, Dreamweaver had an image mapping interface baked into its editor, which made setting up the coordinates and the rest of the code very simple.
+
+We understand it's unlikely you're using Dreamweaver today. (We aren't.) However, image map utilities still exist. We like the one at [www.image-map.net](https://www.image-map.net/), but there are others. Upload your image, click and drag on the image to create the hotspot(s), generate the code, and incorporate it in your document.
+
+### Step 2: Copy and paste the code
+
+The `<img>` and its `<map>` may be separated in your document without issue. Place the `<map>`, for example, just before `</body>` (perhaps in your `<footer>` element). The `<img>`, of course, will occur wherever it needs to appear in your document.
+
+🖥 We offer the above image with map working in [today’s CodePen demo](https://codepen.io/jen4web/pen/abpxzQM).
+
+### Step 3: Making your image map responsive
+⚠️ ⚠️ ⚠️ Image maps were first created before responsive design was a thing. Therefore, the image map that works beautifully on your desktop device **will not work with a scaled image** on a mobile device, meaning the map will get out of sync with its underlying image. Boo. 👎
+
+There are solutions to this issue, all of which involve JavaScript. T[his StackOverflow thread](https://stackoverflow.com/questions/13321067/dynamically-resizing-image-maps-and-images/13322059) offers several starting points.
+
+Please let us know if anyone has a way to make responsive image maps work with HTML and CSS alone.
+
+### Accessibility considerations
+✅ [The W3C Web Accessibility Initiative (WAI) offers tips for image map accessibility](https://www.w3.org/WAI/tutorials/images/imagemap/). Provided that developers offer excellent, meaningful alt text for the image and its hotspots, it seems that much of the hard work is done.
+
+### [`<map>` and `<area>` demo](https://codepen.io/jen4web/pen/abpxzQM)
+
