@@ -1743,3 +1743,31 @@ Email is great, and blogs are awesome, but it can be challenging to use them as 
 We will assemble the e-book from these past posts and emails and get that out to you as soon as possible. We anticipate it will be no later than June 30.
 
 ### [`<figure>` and `<figcaption>` demo](https://codepen.io/jen4web/pen/LYxabWR?editors=1100)
+
+# `<map>` and `<area>`
+
+Back in the Dark Times Before CSS, we used to do a ton of work creating graphics in Adobe Photoshop. We'd make lots of images to use on websites because HTML as a construction for building web pages was pretty limiting.
+
+One of our techniques to skirt ancient limitations was to use large images marked up with clickable areas, using the `<map>` and `<area>` elements in HTML. This allowed us to have the crazy layouts we wanted to have but had no way to make.
+
+Today, this technique has fallen out of favor -- or perhaps younger developers never learned it in the first place. Multiple clickable areas in a single image may still be useful, particularly for graphics with oddly shaped clickable areas (like a map of political boundaries).
+
+### ✏️ An Editorial Moment ✍️
+
+Why walk through a technique that, arguably, is completely outdated for modern web development?
+
+✅ It's not deprecated, and it could still be used.
+
+🌈 One of our goals in #30DaysofHTML is to increase your HTML vocabulary. Even if you have no intention of using an image map any time soon, we'd like you to know it exists. Who knows when this might be useful?
+
+👍 We assume most of our readers have little experience in creating an image map, or they have not created an image map in many years. We'll walk through how this is done with our current toolset, including how to make the image map responsive.
+
+### Image map example
+Pexels offered us this beautiful photo of some dishes on the table.
+
+![img_14.png](img_14.png)
+
+*Photo of four food dishes and two empty plates on a table.
+Photo by [Taha Samet Arslan](https://www.pexels.com/@tahaasamett?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels) from [Pexels](https://www.pexels.com/photo/food-plate-dinner-lunch-7624679/?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels)*
+
+Wouldn't it be lovely if people could click on the dish and get a link to a recipe? Or maybe they click on the dish and are taken to a website where they could buy that exact item? Let's walk through that process.
