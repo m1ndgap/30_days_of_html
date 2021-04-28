@@ -1711,16 +1711,35 @@ You may absolutely include multiple images inside of a `<figure>`, as in [this e
     </figure>
 
 Other uses for <figure> and <figcaption>
-As we've seen this month, <figure> and <figcaption> may be used in marking up quotes, poems, audio, video, ASCII art, and code snippets, among others.
+As we've seen this month, `<figure>` and `<figcaption>` may be used in marking up quotes, poems, audio, video, ASCII art, and code snippets, among others.
 
-<figure>
-    <figcaption>
-        <cite><a href="https://www.bbcamerica.com/anglophenia/2011/11/salman-rushdie-writes-a-limerick-for-kim-kardashian">"The Marriage of Poor Kim Kardashian,"</a></cite> by Salman Rushdie
-    </figcaption>
-    <p>The marriage of poor Kim Kardashian<br>
-    Was krushed like a kar in a krashian.<br>
-    Her Kris kried, not fair!<br>
-    Why kan’t I keep my share?<br>
-    But Kardashian fell klean outa fashian.</p>
-</figure>
-🖥 See today's CodePen demo and the WHATWG and MDN pages for more examples of <figure> and <figcaption> markup.
+    <figure>
+        <figcaption>
+            <cite><a href="https://www.bbcamerica.com/anglophenia/2011/11/salman-rushdie-writes-a-limerick-for-kim-kardashian">"The Marriage of Poor Kim Kardashian,"</a></cite> by Salman Rushdie
+        </figcaption>
+        <p>The marriage of poor Kim Kardashian<br>
+        Was krushed like a kar in a krashian.<br>
+        Her Kris kried, not fair!<br>
+        Why kan’t I keep my share?<br>
+        But Kardashian fell klean outa fashian.</p>
+    </figure>
+🖥 See [today's CodePen demo](https://codepen.io/jen4web/pen/LYxabWR?editors=1100) and the [WHATWG](https://html.spec.whatwg.org/multipage/grouping-content.html#the-figure-element) and [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure) pages for more examples of `<figure>` and `<figcaption>` markup.
+
+### 🎉📚Get the #30DaysofHTML e-book📚🎉
+[We are super excited to announce our e-book!](https://www.buymeacoffee.com/jen4web/e/29684)
+
+Email is great, and blogs are awesome, but it can be challenging to use them as a reference in the future. We'll be assembling this month's work into an e-book. Would you like a copy?
+
+☕️ [If you are financially able to do so, buy us a coffee](https://www.buymeacoffee.com/jen4web) (or two, or five!). Coffees are $5 each, and the e-book starts at $6 (and will go up from there).
+
+- 🎉 **If you already bought us a coffee, you get an e-book!** 😁 🎉
+
+👍 **Or spread the word** and we'll **give** you a free e-book! Choose one of these below:
+
+- Mention and link to at least one post from #30DaysofHTML in your newsletter by April 30. (If you’ve already done this, you get a free e-book!)
+
+- Retweet this e-book announcement, or talk about the e-book on other social media platforms, by April 30!
+
+We will assemble the e-book from these past posts and emails and get that out to you as soon as possible. We anticipate it will be no later than June 30.
+
+### [`<figure>` and `<figcaption>` demo](https://codepen.io/jen4web/pen/LYxabWR?editors=1100)
