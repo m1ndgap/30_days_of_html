@@ -1828,3 +1828,75 @@ Please let us know if anyone has a way to make responsive image maps work with H
 
 ### [`<map>` and `<area>` demo](https://codepen.io/jen4web/pen/abpxzQM)
 
+# `<picture>`, `<source>`, srcset, and sizes
+
+When [Ethan Marcotte first described responsive design](https://alistapart.com/article/responsive-web-design/) in 2010, he told us that it included a responsive grid layout, media queries, and images that resize. In 2010, the "images that resize" part of this was really hard. Typically it involved a server-side solution or a paid client-side solution to serve images depending on screen dimensions.
+
+Fortunately, HTML has come to our rescue with the `<picture>` and `<source>` elements and the srcset and sizes attributes. `<picture>` and `<source>` are used for loading different images at different screen dimensions, with the browser loading only the image required so as to not impact site performance. srcset and sizes are used for choosing the image with the appropriate resolution for the device.
+
+
+### "Art direction:" `<picture>`
+
+You include this image on your desktop page (photo by [Snapwire from Pexels](https://www.pexels.com/photo/four-beige-hot-air-balloons-flying-618609/)):
+
+![img_15.png](img_15.png)
+
+When it's on a phone, it looks like this:
+
+![img_16.png](img_16.png)
+
+Two problems here. First, we've downloaded a 160K image at mobile dimensions. Second, we can't see anything. Ugh.
+
+The photo might be more effective if we crop it and show a smaller part of the photo at greater detail on mobile:
+
+![img_17.png](img_17.png)
+
+Now my image is 8K and you get way more detail on your phone than you do with that other image. Win-win! This is what people mean when they say "art direction." We're changing the photo in some way at different screen sizes for better communication of the message.
+
+Swapping the images is easy. The code looks like this:
+
+    <picture>
+        <source srcset="balloons.jpg" media="(min-width: 1000px)">
+        <img src="balloons-cropped.jpg" alt="Hot air balloons rise over the desert.">
+    </picture>
+The `<picture>` tag wraps around everything.
+
+You may have as many `<source>` elements as you wish. If this looks familiar, that's because it's the same element used with `<audio>` and `<video>` (tomorrow!).
+
+Each `<source>` element spells out a different image, via srcset, that should be loaded under different conditions spelled out in the media query, which is the value of the media attribute.
+
+The `<img>` is a fallback for browsers that don't support `<picture>`. It's also the default image with the alt attribute. If no other images meet the `<source>` criteria, then `<img>` will load instead. Therefore, this is generally where you place your small, mobile image.
+
+🖥 [View this example in today’s CodePen demo](https://codepen.io/jen4web/pen/gOgyLWR).
+
+### Media queries FTW?
+
+Use *min-width* or *max-width* media queries to swap images, just the same way you would in your CSS for swapping styles at breakpoints. This seems to work consistently across browsers.
+
+However, other types of media queries may not work consistently. For example, here's one that swaps a color image for black and white when printed. This only works in Firefox. It would be awesome if it worked in Chrome and Safari, too.
+
+    <picture>
+      <source srcset="https://assets.codepen.io/296057/30dayshtml-balloons-bw.jpg" media="print">
+      <img src="https://assets.codepen.io/296057/30dayshtml-balloons.jpg" />
+    </picture> 
+
+### Supporting new image formats for the web
+[You’ve probably heard about the new image formats for the web](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types) like WebP and AVIF, among others. You probably have (appropriate!) hesitations about using these in your site designs because of concerns about backwards compatibility.
+
+<picture> is good for this as well, [as described in this example from MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture):
+
+    <picture>
+      <source srcset="logo.webp" type="image/webp">
+      <img src="logo.png" alt="logo">
+    </picture>
+Just as you saw above, the browser will find the image that it supports and display that image. If the browser supports WebP, that’s what it will display. Otherwise, it will go to the PNG format.
+
+### Switching Resolutions with srcset and sizes
+You may want to load high-resolution images on devices that support this and have the bandwidth to load them quickly.
+
+While you can do this with the `<picture>` element and media queries, the srcset attribute may be used without `<picture>` to make this work.
+
+[Eric Portis has an amazing illustrated article](https://ericportis.com/posts/2014/srcset-sizes/) explaining why srcset and sizes are the right tool for the job. There is nothing we can add to this. Please go read it; it's a masterpiece.
+
+### [`<picture>` and `<source>` demo](https://codepen.io/jen4web/pen/gOgyLWR)
+
