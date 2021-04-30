@@ -1900,3 +1900,139 @@ While you can do this with the `<picture>` element and media queries, the srcset
 
 ### [`<picture>` and `<source>` demo](https://codepen.io/jen4web/pen/gOgyLWR)
 
+# `<audio>` and `<video>`
+
+We could easily spend several days digging into all aspects of `<audio>` and `<video>`... but it's Day 29 of #30DaysofHTML, and we're out of time! We will instead provide lots of links to more reading. We tried to be brief, really, but it just didn’t work.
+
+🏁 If a knowledgeable audio and video person wanted to take up the format, we suggest a #15DaysofAV series to cover all of the things, because there are so many, and we are not experts.
+
+### Self-hosted or hosted elsewhere?
+
+After making the audio and video, a university degree program's worth of knowledge by itself, where will it live online?
+
+✅ You're aware of services like YouTube, Vimeo, SoundCloud, and more, which will happily host your audio and video for you. For many site owners, these are awesome solutions. These services will provide you with the appropriate code to embed your content on your website.
+
+⚠️ You may also host your own audio and video content using your own hosting environment. However, be aware that:
+
+📽 Audio and video files are big and take up lots of hard drive space.
+
+🎼 Every play may add megabytes to your bandwidth (transfer) bill.
+
+💰 You'll probably need to upgrade your hosting, if you're putting up more than a handful of short files.
+
+⛔️ "Unlimited bandwidth" plans seldom are.
+
+You'll encounter `<audio>` and `<video>` elements where site owners are keeping these files on their own web hosting space. Services like YouTube, Vimeo, and SoundCloud generally share through `<iframe>` elements, not `<audio>` and `<video>`.
+
+### Audio and video file formats
+Let's assume your files and/or your site traffic is small, and you've decided to host your own audio and video. Next up: choosing the right file format(s).
+
+✅ If your goal is a single file format that's supported by most modern browsers, your choice is likely [MP3](https://caniuse.com/?search=mp3) for audio and [MP4](https://caniuse.com/?search=mp4) for video.
+
+Of course, there are a bazillion other codecs and container formats available for audio and video. 👉🏿 [We point in their general direction](https://developer.mozilla.org/en-US/docs/Web/Media/Formats).
+
+### Captions and transcripts
+✅ Almost always, your audio and video needs captions, transcripts, or both. The primary reason is accessibility. However, even if your site visitors can see video and/or hear audio, captions and transcripts are useful for skimming for relevant information, indexing by search engines and other robots, copying and pasting into an automatic translator like Google Translate, and dodging the boss at work as you watch videos with the sound off. (We saw you.) 👀
+
+There's much to say about quality of auto-transcription services, writing great captions, and editing usable transcripts. [W3C's Web Accessibility Initiative (WAI)](https://www.w3.org/WAI/media/av/) offers an excellent starting point for this important work.
+
+### Autoplay: Just because you can doesn't mean you should
+⛔️ One of the common uses of `<audio>` is to play background music on a website, or to start media playing when the page loads.
+
+🪳 We feel that 99.9% of the time, *autoplay* is like filling your website with cockroaches.🪳
+
+However, others differ in their worldview. [MDN offers an extensive guide to the autoplay API](https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide).
+
+### Styling custom audio and video players
+🎨 While HTML will provide you basic browser-styled controls, you may customize with CSS.
+
+📽 [MDN provides a tutorial on styling video players](https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/Video_player_styling_basics).
+
+🎼 [CSS-Tricks offers styling tips for an audio player](https://css-tricks.com/lets-create-a-custom-audio-player/).
+
+### Oh yeah, there's HTML too
+We think we've arrived at the HTML. Whew.
+
+🖥 All examples are available in today's [CodePen demo](https://codepen.io/jen4web/pen/JjEqPvo).
+
+### Audio at its most simple
+
+We believe this is the absolute minimum required to include an audio file on a website. We offer a single file format via the *src* attribute. Without *controls*, the audio would be downloaded but not visible to the user to play.
+
+    <audio controls src="pencilsharpener.mp3"></audio>
+Obviously the above is not accessible. The audio is the sound of a pencil being sharpened. We could communicate that with our old friend `<figure>`.
+
+    <figure>
+        <figcaption>Listen to a pencil being sharpened:</figcaption>
+        <audio controls src="pencilsharpener.mp3"></audio>
+    </figure>
+
+Better. But what if I can't get the MP3? There are two possible approaches. Here's the #UXFail method:
+
+    <figure>
+        <figcaption>Listen to a pencil being sharpened:</figcaption>
+        <audio controls src="pencilsharpener.mp3">
+       Your browser does not support the <code>audio</code> element.
+    </audio>
+    </figure>
+⛔️ #UXFail because who knows or cares what an `<audio>` element is (except developers)? Furthermore, what are you supposed to do about the problem?
+
+✅ We can improve this by making use of `<source>` plus some better options if choices fail. The paragraph in between the `<audio>` tags will only display if the audio is not available to play in the browser.
+
+    <figure>
+        <figcaption>Listen to a pencil being sharpened:</figcaption>
+        <audio controls>
+          <source src="pencilsharpener.mp3" type="audio/mpeg">
+          <source src="pencilsharpener.ogg" type="audio/ogg">
+          <p><a href="pencilsharpener.mp4">Download the audio</a> to play on your device.</p>
+        </audio>
+    </figure>
+
+Finally, what about a transcript or captions? The audio file here does not have words and does not need this, but if it did, we need to provide a text equivalent. [According to MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio#accessibility_concerns):
+
+> Audio with spoken dialog should provide both captions and transcripts that accurately describe its content. Captions, which are specified using [WebVTT](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API), allow people who are experiencing hearing loss to understand an audio recording's content as the recording is being played, while transcripts allow people who need additional time to be able to review the recording's content at a pace and format that is comfortable for them.
+
+However, MDN notes that WebVTT is **not** supported by `<audio>`, and therefore recommends you play your audio using the <video> element instead.
+
+`<audio>` includes many additional HTML attributes and JavaScript events not covered here, but you may [review them on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio).
+
+### Basic video
+The HTML pattern for video is essentially the same as that for audio. It may be placed in a `<figure>` tag to provide a caption if desired:
+
+    <figure>
+        <figcaption>Watch a record spin:</figcaption>
+        <video controls>
+          <source src="recordplayer.mp4"  type="video/mp4">
+          <source src="recordplayer.webm" type="video/webm">
+          <p><a href="pencilsharpener.mp4">Download the video</a> to play on your device.</p>
+        </video>
+    </figure>
+
+### The *poster* attribute
+`<video>` allows for a poster attribute, which is the image shown before the video downloads and/or plays. Once again, the paragraph with link only displays if `<video>` is not supported.
+
+    <video
+    controls
+    poster="https://assets.codepen.io/296057/30dayshtml-video.png">
+      <source
+        src="https://assets.codepen.io/296057/recordplayer.mp4"  
+        type="video/mp4">
+      <source 
+        src="recordplayer.webm"
+        type="video/webm">
+          <p><a href="pencilsharpener.mp4">Download the video</a> to play on your device.</p>
+    </video>    
+
+### Embedding a text track
+The example video has no sound, so transcripts or captions are not required here. However, if you do need a transcript or captions, one possible way to implement this is via the `<track>` element, used for embedding WebVTT tracks with the video. [MDN has more information and examples on this](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track).
+
+### `<source>` in `<video>` does not have a *media* attribute
+
+At one point, video was responsive. Alas, no longer. [Scott Jehl offers an explanation and a proposed fix](https://www.filamentgroup.com/lab/video-with-sizes/). This would allow video to choose the appropriate video file based on media queries, not just the file type. Right now, the `<source>` element serves up different file types only, without the media attribute we saw yesterday with `<picture>`.
+
+`<video>` includes many additional HTML attributes and JavaScript events not covered here, but you may [review them on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video).
+
+### `<iframe>` video made flexible
+If you are using a video hosting service that serves up video with `<iframe>` elements, these are fixed width across devices. To make this responsive, use CSS. Erika is a fan of [www.embedresponsively.com](https://www.embedresponsively.com/), which will take a provided YouTube, Vimeo, DailyMotion, Google Map, Getty Motion, or generic iframe URL and spit out HTML and CSS to make the `<iframe>` flex within a container.
+
+### [`<audio>` and `<video>` demo](https://codepen.io/jen4web/pen/JjEqPvo)
